@@ -17,7 +17,7 @@ public class MovementEffector : MonoBehaviour
     void Start()
     {
         ControllerScript = GetComponent<InputControllerI>();
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInChildren<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -39,7 +39,7 @@ public class MovementEffector : MonoBehaviour
 
     void HandleMovement()
     {
-        Vector3 position = transform.position;
+        Vector3 position = rb.position;
 
         if (MoveLeft)
             position.x -= 0.1f;
@@ -53,7 +53,7 @@ public class MovementEffector : MonoBehaviour
         if (MoveDown)
             position.z -= 0.1f;
 
-        transform.position = position;
+        rb.position = position;
     }
 
     void OnCollisionEnter(Collision collision)
