@@ -108,8 +108,8 @@ public class GenerateGrid : MonoBehaviour
         //Debug.DrawLine(nodes[0].Position, nodes[10].Position, Color.white, 30.0f);
         //while()
 
-        IsInsideBarrier(nodes[5].Position);
-        IsInsideBarrier(nodes[10].Position);
+        //IsInsideBarrier(nodes[5].Position);
+        //IsInsideBarrier(nodes[10].Position);
     }
 
     // Casts a ray down from above the point, and checks if it collides.
