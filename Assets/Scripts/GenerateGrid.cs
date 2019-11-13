@@ -49,6 +49,7 @@ public class GenerateGrid : MonoBehaviour
         }
     }
 
+    // This is kind of a mess, but it works.
     public void Generate(Vector3 topLeft, Vector3 bottomRight, float stepDist)
     {
         int maxNodes = 5000;
