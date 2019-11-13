@@ -18,13 +18,9 @@ public class GenerateGrid : MonoBehaviour
 
         nodes = new List<Node>();
 
-        //transform.position = BottomRight;
         Generate(TopLeft, BottomRight, distance);
 
-        ConnectNodes(nodes, distance * 1.5f);
-
-        int q = 0;
-        q++;
+        ConnectNodes(nodes, distance);// * 1.5f);
     }
 
     
@@ -48,10 +44,7 @@ public class GenerateGrid : MonoBehaviour
                 if (distance <= radius)
                 {
                     nodes[i].ConnectNode(nodes[k]);
-
                 }
-                //node.connectedNodes()
-                // Connect all nodes within a radius to each other.
             }
         }
     }
@@ -132,25 +125,6 @@ public class GenerateGrid : MonoBehaviour
                 nodes.Add(node);
             }
         }
-        /*
-        nodes.Add(new Node(new Vector3(0, 1, 0)));
-        nodes.Add(new Node(new Vector3(-0.5f, 1, 0)));
-        nodes.Add(new Node(new Vector3(-1, 1, 0)));
-        nodes.Add(new Node(new Vector3(-1.5f, 1, 0)));
-        nodes.Add(new Node(new Vector3(-2, 1, 0)));
-        nodes.Add(new Node(new Vector3(-2.5f, 1, 0)));
-        nodes.Add(new Node(new Vector3(-3, 1, 0)));
-        nodes.Add(new Node(new Vector3(-3.5f, 1, 0)));
-        nodes.Add(new Node(new Vector3(-4f, 1, 0)));
-        nodes.Add(new Node(new Vector3(-4.5f, 1, 0)));
-        nodes.Add(new Node(new Vector3(-5f, 1, 0)));
-        */
-        //nodes.Add(new Node(topLeft));
-        //Debug.DrawLine(nodes[0].Position, nodes[10].Position, Color.white, 30.0f);
-        //while()
-
-        //IsInsideBarrier(nodes[5].Position);
-        //IsInsideBarrier(nodes[10].Position);
     }
 
     // Casts a ray down from above the point, and checks if it collides.
@@ -161,7 +135,7 @@ public class GenerateGrid : MonoBehaviour
         Vector3 pointAbove = point;
         pointAbove.y = 2;
 
-        bool hit = Physics.Raycast(pointAbove, down, 1.25f);
+        /*bool hit = Physics.Raycast(pointAbove, down, 1.25f);
         if (hit)
         {
             Debug.DrawLine(pointAbove, point, Color.red, 30.0f);
@@ -174,9 +148,9 @@ public class GenerateGrid : MonoBehaviour
             }
         }
 
-        return hit;
+        return hit;*/
 
-        //return Physics.Raycast(pointAbove, down, 1.25f);
+        return Physics.Raycast(pointAbove, down, 1.25f);
     }
 
     static public bool IsOutsideMap(Vector3 point, bool showLine = false)
@@ -185,13 +159,13 @@ public class GenerateGrid : MonoBehaviour
         Vector3 pointAbove = point;
         pointAbove.y = 2;
 
-        bool hit = Physics.Raycast(pointAbove, down, 5.0f);
+        /*bool hit = Physics.Raycast(pointAbove, down, 5.0f);
         if (!hit && showLine)
         {
             Debug.DrawLine(pointAbove, point, Color.magenta, 30.0f);
         }
 
-        return !hit;
+        return !hit;*/
 
         return !Physics.Raycast(pointAbove, down, 5.0f);
     }
