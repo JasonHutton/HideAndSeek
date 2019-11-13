@@ -8,14 +8,23 @@ public class GenerateGrid : MonoBehaviour
     private Vector3 BottomRight;
     public float distance;
 
+    private List<Node> nodes;
+
     // Start is called before the first frame update
     void Start()
     {
         TopLeft = new Vector3(-9, 1, 9);
         BottomRight = new Vector3(9, 1, -9);
 
+        nodes = new List<Node>();
+
         //transform.position = BottomRight;
         Generate(TopLeft, BottomRight, distance);
+
+        ConnectNodes(nodes, distance * 1.5f);
+
+        int q = 0;
+        q++;
     }
 
     
@@ -26,14 +35,34 @@ public class GenerateGrid : MonoBehaviour
         
     }
 
+    public void ConnectNodes(List<Node> nodes, float radius)
+    {
+        for(int i = 0;i < nodes.Count;i++)
+        { 
+            for(int k = 0;k < nodes.Count;k++)
+            {
+                float distance = Vector3.Distance(nodes[i].Position, nodes[k].Position);
+                if (distance <= 0.000f)
+                    continue;
+
+                if (distance <= radius)
+                {
+                    nodes[i].ConnectNode(nodes[k]);
+
+                }
+                //node.connectedNodes()
+                // Connect all nodes within a radius to each other.
+            }
+        }
+    }
+
     public void Generate(Vector3 topLeft, Vector3 bottomRight, float stepDist)
     {
-        List<Node> nodes = new List<Node>();
-        
+        int maxNodes = 5000;
         nodes.Add(new Node(new Vector3(0, 1, 0)));
-        for (int k = 0; k < 50; k++)
+        for (int k = 0; k < maxNodes; k++)
         {
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < maxNodes; i++)
             {
                 Node node;
                 node = new Node(new Vector3(-stepDist * i, 1, stepDist * k));
@@ -43,12 +72,15 @@ public class GenerateGrid : MonoBehaviour
                     break;
                 }
 
+                if (Vector3.Distance(nodes[k].Position, node.Position) <= 0.000f)
+                    continue;
+                    
                 nodes.Add(node);
             }
         }
-        for (int k = 0; k < 50; k++)
+        for (int k = 0; k < maxNodes; k++)
         {
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < maxNodes; i++)
             {
                 Node node;
                 node = new Node(new Vector3(stepDist * i, 1, stepDist * k));
@@ -58,12 +90,15 @@ public class GenerateGrid : MonoBehaviour
                     break;
                 }
 
+                if (Vector3.Distance(nodes[k].Position, node.Position) <= 0.000f)
+                    continue;
+
                 nodes.Add(node);
             }
         }
-        for (int k = 0; k < 50; k++)
+        for (int k = 0; k < maxNodes; k++)
         {
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < maxNodes; i++)
             {
                 Node node;
                 node = new Node(new Vector3(-stepDist * i, 1, -stepDist * k));
@@ -73,12 +108,15 @@ public class GenerateGrid : MonoBehaviour
                     break;
                 }
 
+                if (Vector3.Distance(nodes[k].Position, node.Position) <= 0.000f)
+                    continue;
+
                 nodes.Add(node);
             }
         }
-        for (int k = 0; k < 50; k++)
+        for (int k = 0; k < maxNodes; k++)
         {
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < maxNodes; i++)
             {
                 Node node;
                 node = new Node(new Vector3(stepDist * i, 1, -stepDist * k));
@@ -87,6 +125,9 @@ public class GenerateGrid : MonoBehaviour
                 {
                     break;
                 }
+
+                if (Vector3.Distance(nodes[k].Position, node.Position) <= 0.000f)
+                    continue;
 
                 nodes.Add(node);
             }
@@ -158,23 +199,29 @@ public class GenerateGrid : MonoBehaviour
 
 public class Node
 {
-    public Node North;
-    public Node South;
-    public Node East;
-    public Node West;
+    private List<Node> connectedNodes;
     public Vector3 Position;
     public bool Passable;
-    /*public Node UpLeft;
-    public Node UpRight;
-    public Node DownLeft;
-    public Node DownRight;*/
 
     public Node(Vector3 pos)
     {
+        connectedNodes = new List<Node>();
+
         Position = pos;
         if(GenerateGrid.IsOutsideMap(pos) || GenerateGrid.IsInsideBarrier(pos))
         {
             Passable = false;
         }
+    }
+
+    public void ConnectNode(Node node)
+    {
+        foreach (Node connectedNode in connectedNodes)
+        {
+            if (Vector3.Distance(connectedNode.Position, node.Position) <= 0.000f)
+                return;
+        }
+
+        connectedNodes.Add(node);
     }
 }
