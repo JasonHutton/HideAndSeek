@@ -205,6 +205,7 @@ public class Node
 
     public Node(Vector3 pos)
     {
+        Passable = true;
         connectedNodes = new List<Node>();
 
         Position = pos;
@@ -216,8 +217,14 @@ public class Node
 
     public void ConnectNode(Node node)
     {
+        if (!Passable)
+            return;
+
         foreach (Node connectedNode in connectedNodes)
         {
+            if (!connectedNode.Passable)
+                return;
+
             if (Vector3.Distance(connectedNode.Position, node.Position) <= 0.000f)
                 return;
         }
