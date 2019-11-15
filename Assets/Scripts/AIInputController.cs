@@ -17,8 +17,8 @@ public class AIInputController : InputControllerI
     // Update is called once per frame
     void Update()
     {
-        //RandomWanderViaButtons();
-        Wander();
+        RandomWanderViaButtons();
+        //Wander();
     }
 
     void Wander()
@@ -108,6 +108,7 @@ public class AIInputController : InputControllerI
     }*/
 }
 
+/*
 class KinematicWander
 {   struct Static
     {
@@ -158,3 +159,4 @@ class KinematicWander
         return steering
             }
 }
+*/
