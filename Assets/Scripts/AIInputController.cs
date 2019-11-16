@@ -18,8 +18,51 @@ public class AIInputController : InputControllerI
     void Update()
     {
         //RandomWanderViaButtons();
-        Wander();
+        //Wander();
+        ObstacleAndWallAvoidance();
     }
+
+    void ObstacleAndWallAvoidance()
+    {
+        class ObstacleAvoidance (Seek):
+2
+3.3 Steering Behaviors 95
+3 # Holds a collision detector
+4 collisionDetector
+5
+6 # Holds the minimum distance to a wall (i.e., how far
+7 # to avoid collision) should be greater than the
+8 # radius of the character.
+9 avoidDistance
+10
+11 # Holds the distance to look ahead for a collision
+12 # (i.e., the length of the collision ray)
+13 lookahead
+14
+15 # ... Other data is derived from the superclass ...
+16
+17 def getSteering():
+18
+19 # 1. Calculate the target to delegate to seek
+20
+21 # Calculate the collision ray vector
+22 rayVector = character.velocity
+23 rayVector.normalize()
+24 rayVector *= lookahead
+25
+26 # Find the collision
+27 collision = collisionDetector.getCollision(
+28 character.position, rayVector)
+29
+30 # If have no collision, do nothing
+31 if not collision: return None
+32
+33 # Otherwise create a target
+34 target = collision.position + collision.normal* avoidDistance
+35
+36 # 2. Delegate to seek
+37 return Seek.getSteering()
+}
 
     void Wander()
     {
