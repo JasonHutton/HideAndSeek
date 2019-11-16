@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class InputControllerI : MonoBehaviour
 {
-    public bool MoveLeft;
-    public bool MoveRight;
-    public bool MoveUp;
-    public bool MoveDown;
+    public bool MoveForward;
+    public bool MoveBackward;
     public bool TurnLeft;
     public bool TurnRight;
 
@@ -18,10 +16,8 @@ public class InputControllerI : MonoBehaviour
     }
     public void ResetMovement()
     {
-        MoveUp = false;
-        MoveDown = false;
-        MoveLeft = false;
-        MoveRight = false;
+        MoveForward = false;
+        MoveBackward = false;
         TurnLeft = false;
         TurnRight = false;
     }

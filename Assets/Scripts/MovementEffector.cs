@@ -26,25 +26,32 @@ public class MovementEffector : MonoBehaviour
     {
         if (ControllerScript != null)
         {
-            MoveForward = ControllerScript.MoveUp;
-            MoveBackward = ControllerScript.MoveDown;
+            MoveForward = ControllerScript.MoveForward;
+            MoveBackward = ControllerScript.MoveBackward;
             TurnLeft = ControllerScript.TurnLeft;
             TurnRight = ControllerScript.TurnRight;
         }
 
         //getNewOrientation(transform.eulerAngles, rb.velocity);
         //Debug.DrawLine(transform.position, getNewOrientation(transform.eulerAngles, rb.velocity));
-        Vector3 vel = rb.velocity;
-        /*if (Vector3.Magnitude(vel) > 0)
-            vel = Vector3.Normalize(vel);
-        else
-            vel = Vector3.Normalize(transform.rotation.eulerAngles);*/
+        //Vector3 vel = rb.velocity;
+        //if (Vector3.Magnitude(vel) > 0)
+            //vel = Vector3.Normalize(vel);
+        //else
+            //vel = Vector3.Normalize(rb.transform.forward);
+        //vel = Vector3.Normalize(transform.rotation.eulerAngles);
         //Debug.DrawLine(transform.position, transform.forward * 2);
+
+
+        //Debug.DrawLine(rb.transform.position, rb.transform.position + Vector3.Normalize(rb.transform.forward) * 2.0f);
+        Debug.DrawLine(rb.transform.position, rb.transform.position + Vector3.Normalize(rb.transform.forward) * 2.0f);
+        //Debug.DrawLine(rb.transform.position, Vector3.Normalize(rb.velocity) * 2.0f);
     }
 
     private void FixedUpdate()
     {
         HandleMovement();
+        //Debug.Log(transform.forward);
     }
 
     void HandleMovement()
@@ -52,32 +59,28 @@ public class MovementEffector : MonoBehaviour
         Vector3 position = Vector3.zero;// transform.position;// rb.position;
         Vector3 rotation = rb.rotation.eulerAngles;
         float forwardBack = 0.0f;
-        float speed = 10.0f;
+        float leftRight = 0.0f;
+        float speed = 1000.0f;
+        float rotationSpeed = 100.0f;
+        float maxSpeed = 100.0f;
 
-        //if (TurnLeft)
-            //rotation.y -= 0.1f;
+        if (TurnLeft)
+            leftRight = -1.0f;
 
-        //if (TurnRight)
-            //rotation.y += 0.1f;
+        if (TurnRight)
+            leftRight = 1.0f;
 
         if (MoveForward)
             forwardBack = 1.0f;
-        //forwardBack += 0.1f;
-        //position.z += 0.1f;
-
 
         if (MoveBackward)
             forwardBack = -1.0f;
-        //forwardBack -= 0.1f;
-        //position.z -= 0.1f;
-        if (forwardBack == 0.0f)
-            return;
-        //rb.MovePosition(position);
-        Vector3 movement = new Vector3(forwardBack * speed, 0, 0);
-        //rb.MovePosition(transform.position + movement * Time.fixedDeltaTime);
-        rb.MovePosition(rb.transform.position + movement * Time.fixedDeltaTime);
-        //rb.MoveRotation(Quaternion.Euler(rotation));
-        Debug.Log(movement);
+
+        if (forwardBack < 0.0f)
+            leftRight = -leftRight;
+
+        rb.velocity = rb.transform.forward * forwardBack * speed * Time.fixedDeltaTime;
+        rb.angularVelocity = rb.transform.up * leftRight * rotationSpeed * Time.fixedDeltaTime;
     }
 
     /*
@@ -91,8 +94,15 @@ public class MovementEffector : MonoBehaviour
     {
         if (collision.gameObject.tag == "Barrier")
         {
-            rb.velocity = Vector3.zero;
+            //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+            //rb.velocity = Vector3.zero; // This is simplified, need to only stop in the direction of the barrier.
             Debug.Log("Collided with a Barrier!");
+
+            //ContactPoint contact = collision.contacts[0];
+
+            // Rotate the object so that the y-axis faces along the normal of the surface
+            //Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
+            //rb.rotation = rot;
         }
     }
 

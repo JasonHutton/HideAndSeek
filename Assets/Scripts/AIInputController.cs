@@ -37,6 +37,7 @@ public class AIInputController : InputControllerI
             ResetMovement();
 
             int decision = Mathf.FloorToInt(Random.Range(0.0f, 8.0f));
+            /*
             switch (decision)
             {
                 case 0:
@@ -68,6 +69,7 @@ public class AIInputController : InputControllerI
                     MoveRight = true;
                     break;
             }
+            */
         }
     }
 

@@ -21,19 +21,19 @@ public class PlayerInputController : InputControllerI
         ResetMovement();
 
         if (Horizontal < 0.0f)
-            MoveLeft = true;
+            TurnLeft = true;
         if (Horizontal > 0.0f)
-            MoveRight = true;
+            TurnRight = true;
         if (Vertical < 0.0f)
-            MoveDown = true;
+            MoveBackward = true;
         if (Vertical > 0.0f)
-            MoveUp = true;
+            MoveForward = true;
 
         // Disable movement direction if inputs are contradicting each other.
-        if (MoveLeft && MoveRight)
-            MoveLeft = MoveRight = false;
-        if (MoveUp && MoveDown)
-            MoveUp = MoveDown = false;
+        if (TurnLeft && TurnRight)
+            TurnLeft = TurnRight = false;
+        if (MoveForward && MoveBackward)
+            MoveForward = MoveBackward = false;
 
         //Debug.Log(string.Format("MoveLeft: {0} MoveRight: {1} MoveUp: {2} MoveDown: {3}", MoveLeft, MoveRight, MoveUp, MoveDown));
     }

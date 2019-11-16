@@ -107,7 +107,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 36
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!1 &8630776787920440435
 GameObject:
@@ -154,10 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838c9bc73e96f6a4ea22c1f61c03056f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveLeft: 0
-  MoveRight: 0
-  MoveUp: 0
-  MoveDown: 0
+  MoveForward: 0
+  MoveBackward: 0
+  TurnLeft: 0
+  TurnRight: 0
 --- !u!114 &-5839632835646793592
 MonoBehaviour:
   m_ObjectHideFlags: 0
