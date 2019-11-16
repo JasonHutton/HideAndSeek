@@ -8,6 +8,8 @@ public class InputControllerI : MonoBehaviour
     public bool MoveRight;
     public bool MoveUp;
     public bool MoveDown;
+    public bool TurnLeft;
+    public bool TurnRight;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,8 @@ public class InputControllerI : MonoBehaviour
         MoveDown = false;
         MoveLeft = false;
         MoveRight = false;
+        TurnLeft = false;
+        TurnRight = false;
     }
 
     // Update is called once per frame

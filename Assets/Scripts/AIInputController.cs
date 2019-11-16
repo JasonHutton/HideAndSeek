@@ -17,8 +17,8 @@ public class AIInputController : InputControllerI
     // Update is called once per frame
     void Update()
     {
-        RandomWanderViaButtons();
-        //Wander();
+        //RandomWanderViaButtons();
+        Wander();
     }
 
     void Wander()
