@@ -106,20 +106,5 @@ public class MovementEffector : MonoBehaviour
         }
     }
 
-    Vector3 getNewOrientation(Vector3 currentOrientation, Vector3 currentVelocity)
-    {
-        
-        // Make sure we have a velocity
-        if (Vector3.Magnitude(currentVelocity) > 0)
-        {
-            // Calculate orientation using an arc tangent of the velocity components.
-            //return Mathf.Atan2(-currentVelocity.x, currentVelocity.z);
-            return Vector3.Normalize(currentVelocity);
-        }
-        // Otherwise use the current orientation
-        else
-        {
-            return Vector3.Normalize(transform.rotation.eulerAngles);
-        }
-    }
+
 }

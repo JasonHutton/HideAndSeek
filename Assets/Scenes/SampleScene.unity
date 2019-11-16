@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -187,6 +187,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2197386444162636946, guid: d475383f6a3662d458621cadbbfbc123,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 84
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d475383f6a3662d458621cadbbfbc123, type: 3}
 --- !u!1 &346150260 stripped
@@ -207,10 +212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db1e747e837178349a3e03468cb5da01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveLeft: 0
-  MoveRight: 0
-  MoveUp: 0
-  MoveDown: 0
+  MoveForward: 0
+  MoveBackward: 0
+  TurnLeft: 0
+  TurnRight: 0
 --- !u!1 &624646749 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8630776787920440435, guid: d475383f6a3662d458621cadbbfbc123,
@@ -229,10 +234,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f33fabb79fc16a4b886357d49420202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveLeft: 0
-  MoveRight: 0
-  MoveUp: 0
-  MoveDown: 0
+  MoveForward: 0
+  MoveBackward: 0
+  TurnLeft: 0
+  TurnRight: 0
   minDirectionChangeInterval: 0.3
   maxDirectionChangeInterval: 0.8
 --- !u!1 &705507993

@@ -22,8 +22,12 @@ public class AIInputController : InputControllerI
         ObstacleAndWallAvoidance();
     }
 
+
+
     void ObstacleAndWallAvoidance()
     {
+
+        /*
         class ObstacleAvoidance (Seek):
 2
 3.3 Steering Behaviors 95
@@ -61,7 +65,7 @@ public class AIInputController : InputControllerI
 34 target = collision.position + collision.normal* avoidDistance
 35
 36 # 2. Delegate to seek
-37 return Seek.getSteering()
+37 return Seek.getSteering()*/
 }
 
     void Wander()
