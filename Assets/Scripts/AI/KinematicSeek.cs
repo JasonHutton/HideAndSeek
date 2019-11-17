@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KinematicSeek : MonoBehaviour
+public class KinematicSeek : Kinematic
 {
     // Holds the static data for the character and target
-    public GameObject character;
-    public GameObject target;
+    //public GameObject character;
+    public Kinematic target;
 
     // Holds the maximum speed the character can travel
     public float maxSpeed;
@@ -25,53 +25,44 @@ public class KinematicSeek : MonoBehaviour
         KinematicSteeringOutput steering = new KinematicSteeringOutput();
 
         // Get the direction to the target
-        steering.velocity = target.transform.position - character.transform.position;
+        steering.velocity = target.position - transform.position;
 
         // The velocity is along this direction, at full speed
         steering.velocity.Normalize();
         steering.velocity *= maxSpeed;
 
         // Face in the direction we want to move
-        character.transform.eulerAngles = getNewOrientation(character.transform.eulerAngles, steering.velocity); // "Orientation"
+        //transform.eulerAngles = getNewOrientation(transform.eulerAngles, steering.velocity); // "Orientation"
 
         // Output the steering
-        steering.rotation = character.transform.eulerAngles.y;// character.transform.rotation; // O? 0? wat?
+        //steering.rotation = transform.eulerAngles.y;// character.transform.rotation; // O? 0? wat?
 
         return steering;
-    }
-
-    Vector3 getNewOrientation(Vector3 currentOrientation, Vector3 currentVelocity)
-    {
-
-        // Make sure we have a velocity
-        if (Vector3.Magnitude(currentVelocity) > 0)
-        {
-            // Calculate orientation using an arc tangent of the velocity components.
-            //return Mathf.Atan2(-currentVelocity.x, currentVelocity.z);
-            return Vector3.Normalize(currentVelocity);
-        }
-        // Otherwise use the current orientation
-        else
-        {
-            return Vector3.Normalize(transform.rotation.eulerAngles);
-        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        KinematicSteeringOutput output = getSteering();
-        //Rigidbody rb = GetComponentInChildren<Rigidbody>();
-        transform.rotation.SetEulerAngles(0, output.rotation, 0);
-        transform.position += output.velocity;
-        //rb.velocity = output.velocity;
-        //rb.rotation.SetEulerRotation(output.rotation);
+        base.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        if (rb != null)
+        {
+            KinematicSteeringOutput output = getSteering();
+            //Rigidbody rb = GetComponentInChildren<Rigidbody>();
+            //transform.rotation.SetEulerAngles(0, output.rotation, 0);
+            rb.velocity = output.velocity;
+            //rb.velocity = output.velocity;
+            //rb.rotation.SetEulerRotation(output.rotation);
+        }
     }
 }
 

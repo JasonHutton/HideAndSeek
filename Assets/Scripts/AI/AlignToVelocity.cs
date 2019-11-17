@@ -7,12 +7,13 @@ public class AlignToVelocity : Kinematic
     // Start is called before the first frame update
     void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
+        base.Update();
         if (rb != null)
         {
             rb.rotation = Quaternion.AngleAxis(getNewOrientation(orientation, velocity), transform.up); // This is actually correct in testing due to how player movement is. Reversing swaps forward, so swaps the next movement, so it oscillates when 'reversing'

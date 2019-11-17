@@ -11,7 +11,7 @@ public class Kinematic : MonoBehaviour
 
     protected Rigidbody rb;
 
-    void Start()
+    protected void Start()
     {
         rb = GetComponent<Rigidbody>();
         if (rb == null)
@@ -20,7 +20,7 @@ public class Kinematic : MonoBehaviour
         }
     }
 
-    void Update()
+    protected void Update()
     {
         if (rb != null)
         {

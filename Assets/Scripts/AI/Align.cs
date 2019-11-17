@@ -34,6 +34,7 @@ public class Align : Kinematic
 
     void GetSteering()//Kinematic _target)
     {
+        /*
         // Create the structure to hold our output
         SteeringOutput steering = new SteeringOutput();
 
@@ -74,6 +75,6 @@ public class Align : Kinematic
 
         // Output the steering
         steering.linear = 0
-        return steering
+        return steering*/
     }
 }
