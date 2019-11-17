@@ -25,7 +25,7 @@ public class KinematicSeek : Kinematic
         KinematicSteeringOutput steering = new KinematicSteeringOutput();
 
         // Get the direction to the target
-        steering.velocity = target.position - transform.position;
+        steering.velocity = target.position - this.position;
 
         // The velocity is along this direction, at full speed
         steering.velocity.Normalize();
