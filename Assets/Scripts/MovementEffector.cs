@@ -75,7 +75,7 @@ public class MovementEffector : MonoBehaviour
             leftRight = -leftRight;
 
         rb.velocity = rb.transform.forward * forwardBack * speed * Time.fixedDeltaTime;
-        //rb.angularVelocity = rb.transform.up * leftRight * rotationSpeed * Time.fixedDeltaTime;
+        rb.angularVelocity = rb.transform.up * leftRight * rotationSpeed * Time.fixedDeltaTime;
     }
 
     /*
