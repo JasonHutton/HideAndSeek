@@ -39,50 +39,41 @@ public class Align : Kinematic
 
         // Get the naive direction to the target
         // Map the result to the (-pi, pi) interval
-        //rotation = mapToRange(target.orientation - this.orientation);
-        //float rotationSize = Mathf.Abs(rotationDirection);
+        rotation = mapToRange(target.orientation - this.orientation);
+        float rotationSize = Mathf.Abs(rotationDirection);
+        // Map the result to the (-pi, pi) interval
+        rotation = mapToRange(rotation)
+        rotationSize = abs(rotationDirection)
+
+        // Check if we are there, return no steering
+        if rotationSize < targetRadius
+            return None
+
+        // If we are outside the slowRadius, then use maximum rotation
+        if rotationSize > slowRadius:
+            targetRotation = maxRotation
+
+        // Otherwise calculate a scaled rotation
+        else:
+            targetRotation =
+            maxRotation* rotationSize / slowRadius
+
+        // The final target rotation combines speed (already in the variable) and direction
+        targetRotation *= rotation / rotationSize
+
+        // Acceleration tries to get to the target rotation
+        steering.angular =
+        targetRotation - character.rotation
+        steering.angular /= timeToTarget
+
+        // Check if the acceleration is too great
+        angularAcceleration = abs(steering.angular)
+        if angularAcceleration > maxAngularAcceleration:
+            steering.angular /= angularAcceleration
+            steering.angular *= maxAngularAcceleration
+
+        // Output the steering
+        steering.linear = 0
+        return steering
     }
 }
-
-    /*
-
-28
-29 # Map the result to the (-pi, pi) interval
-30 rotation = mapToRange(rotation)
-31 rotationSize = abs(rotationDirection)
-32
-33 # Check if we are there, return no steering
-68 Chapter 3 Movement
-34 if rotationSize<targetRadius
-35 return None
-36
-37 # If we are outside the slowRadius, then use
-38 # maximum rotation
-39 if rotationSize> slowRadius:
-40 targetRotation = maxRotation
-41
-42 # Otherwise calculate a scaled rotation
-43 else:
-44 targetRotation =
-45 maxRotation* rotationSize / slowRadius
-46
-47 # The final target rotation combines
-48 # speed (already in the variable) and direction
-49 targetRotation *= rotation / rotationSize
-50
-51 # Acceleration tries to get to the target rotation
-52 steering.angular =
-53 targetRotation - character.rotation
-54 steering.angular /= timeToTarget
-55
-56 # Check if the acceleration is too great
-57 angularAcceleration = abs(steering.angular)
-58 if angularAcceleration > maxAngularAcceleration:
-59 steering.angular /= angularAcceleration
-60 steering.angular *= maxAngularAcceleration
-61
-62 # Output the steering
-63 steering.linear = 0
-64 return steering
-}
-*/
