@@ -120,6 +120,8 @@ GameObject:
   - component: {fileID: 7571349888593286878}
   - component: {fileID: 346150263}
   - component: {fileID: -5839632835646793592}
+  - component: {fileID: 1501299413021970244}
+  - component: {fileID: 4035655623762452219}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -171,3 +173,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SnapInDirection: {x: 0, y: -1, z: 0}
+--- !u!114 &1501299413021970244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8630776787920440435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70948ee8eae388c49ae5a0104ad5e9c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  length: 2
+--- !u!114 &4035655623762452219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8630776787920440435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1adc3a1a2d07b84997fcaa715a5fd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0, z: 0}
+  orientation: 0
+  velocity: {x: 0, y: 0, z: 0}
+  rotation: 0

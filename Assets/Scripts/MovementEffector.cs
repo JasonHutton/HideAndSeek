@@ -41,11 +41,6 @@ public class MovementEffector : MonoBehaviour
             //vel = Vector3.Normalize(rb.transform.forward);
         //vel = Vector3.Normalize(transform.rotation.eulerAngles);
         //Debug.DrawLine(transform.position, transform.forward * 2);
-
-
-        //Debug.DrawLine(rb.transform.position, rb.transform.position + Vector3.Normalize(rb.transform.forward) * 2.0f);
-        Debug.DrawLine(rb.transform.position, rb.transform.position + Vector3.Normalize(rb.transform.forward) * 2.0f);
-        //Debug.DrawLine(rb.transform.position, Vector3.Normalize(rb.velocity) * 2.0f);
     }
 
     private void FixedUpdate()
@@ -80,7 +75,7 @@ public class MovementEffector : MonoBehaviour
             leftRight = -leftRight;
 
         rb.velocity = rb.transform.forward * forwardBack * speed * Time.fixedDeltaTime;
-        rb.angularVelocity = rb.transform.up * leftRight * rotationSpeed * Time.fixedDeltaTime;
+        //rb.angularVelocity = rb.transform.up * leftRight * rotationSpeed * Time.fixedDeltaTime;
     }
 
     /*

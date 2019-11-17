@@ -5,8 +5,8 @@ using UnityEngine;
 public class KinematicSeek : MonoBehaviour
 {
     // Holds the static data for the character and target
-    GameObject character;
-    GameObject target;
+    public GameObject character;
+    public GameObject target;
 
     // Holds the maximum speed the character can travel
     public float maxSpeed;
@@ -14,7 +14,9 @@ public class KinematicSeek : MonoBehaviour
     public struct KinematicSteeringOutput
     {
         public Vector3 velocity;
-        public Quaternion rotation;
+        //public Quaternion rotation;
+        //public Vector3 rotation;
+        public float rotation;
     }
 
     KinematicSteeringOutput getSteering()
@@ -33,7 +35,7 @@ public class KinematicSeek : MonoBehaviour
         character.transform.eulerAngles = getNewOrientation(character.transform.eulerAngles, steering.velocity); // "Orientation"
 
         // Output the steering
-        steering.rotation = character.transform.rotation; // O? 0? wat?
+        steering.rotation = character.transform.eulerAngles.y;// character.transform.rotation; // O? 0? wat?
 
         return steering;
     }
@@ -64,10 +66,13 @@ public class KinematicSeek : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        KinematicSteeringOutput output = getSteering();
+        //Rigidbody rb = GetComponentInChildren<Rigidbody>();
+        transform.rotation.SetEulerAngles(0, output.rotation, 0);
+        transform.position += output.velocity;
+        //rb.velocity = output.velocity;
+        //rb.rotation.SetEulerRotation(output.rotation);
     }
-
-
 }
 
 
