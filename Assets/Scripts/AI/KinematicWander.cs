@@ -21,11 +21,18 @@ public class KinematicWander : Kinematic
 
         // Get velocity from the vector form of the orientation
         //steering.velocity = maxSpeed * AngleToVector(this.orientation);
-        steering.velocity = rb.transform.forward;// Vector3.zero - this.position;
+        Vector3 pos1 = AngleToVector(this.orientation);
+        Vector3 pos2 = rb.transform.forward;
+        //Vector3 pos1f = AlignToVelocity.getNewOrientation(Quaternion.AngleAxis(this.orientation, transform.up), pos1);
+
+        steering.velocity = AngleToVector(this.orientation);// rb.transform.forward;// Vector3.zero - this.position;
         // The velocity is along this direction, at full speed
         steering.velocity.Normalize();
         steering.velocity *= maxSpeed;
 
+
+        float ang1 = this.rotation;
+        Vector3 ang2 = rb.transform.rotation.eulerAngles;
         // Change our orientation randomly
         steering.rotation = randomBinomial() * maxRotation;
 
@@ -51,7 +58,7 @@ public class KinematicWander : Kinematic
     void Start()
     {
         base.Start();
-        //wanderChangeTimer = Time.fixedTime;
+        wanderChangeTimer = -1.0f; // Start it below 0, so it gets adjusted on the first iteration.
     }
 
     // Update is called once per frame
@@ -60,6 +67,7 @@ public class KinematicWander : Kinematic
         base.Update();
     }
 
+    // DON'T FORGET FACING AND VELOCITY SHOULD BE INDEPENDENT!
     private void FixedUpdate()
     {
         if (rb != null)
