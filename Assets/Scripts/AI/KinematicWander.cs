@@ -14,45 +14,6 @@ public class KinematicWander : Kinematic
     private float wanderChangeTimer;
     public float wanderChangeInterval;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        base.Start();
-        //wanderChangeTimer = Time.fixedTime;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        base.Update();
-    }
-
-    private void FixedUpdate()
-    {
-        if (rb != null)
-        {
-            SteeringOutput output = new SteeringOutput();
-            if(Time.fixedTime > wanderChangeTimer)
-            {
-                wanderChangeTimer = Time.fixedTime + wanderChangeInterval;
-                output = getSteering();
-                // Are these updating this.rotation and this.velocity? no? why?
-            }
-            else
-            {
-                output.rotation = this.rotation;
-                output.velocity = this.velocity;
-            }
-            
-            //Rigidbody rb = GetComponentInChildren<Rigidbody>();
-            //transform.rotation.SetEulerAngles(0, output.rotation, 0);
-            rb.velocity = output.velocity;// rb.transform.forward * 10f;// rb.rotation.eulerAngles * 10f;// output.velocity;// rb.transform.forward;// * 1.0f * 20f * Time.fixedDeltaTime;
-            rb.rotation = Quaternion.AngleAxis(output.rotation, transform.up);
-            //rb.velocity = output.velocity;
-            //rb.rotation.SetEulerRotation(output.rotation);
-        }
-    }
-
     SteeringOutput getSteering()
     {
         // Create the structure for output
@@ -84,5 +45,44 @@ public class KinematicWander : Kinematic
         v.x = Mathf.Cos(angle * Mathf.Deg2Rad);
         v.z = Mathf.Sin(angle * Mathf.Deg2Rad);
         return v;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        base.Start();
+        //wanderChangeTimer = Time.fixedTime;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        base.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        if (rb != null)
+        {
+            SteeringOutput output = new SteeringOutput();
+            if (Time.fixedTime > wanderChangeTimer)
+            {
+                wanderChangeTimer = Time.fixedTime + wanderChangeInterval;
+                output = getSteering();
+                // Are these updating this.rotation and this.velocity? no? why?
+            }
+            else
+            {
+                output.rotation = this.rotation;
+                output.velocity = this.velocity;
+            }
+
+            //Rigidbody rb = GetComponentInChildren<Rigidbody>();
+            //transform.rotation.SetEulerAngles(0, output.rotation, 0);
+            rb.velocity = output.velocity;// rb.transform.forward * 10f;// rb.rotation.eulerAngles * 10f;// output.velocity;// rb.transform.forward;// * 1.0f * 20f * Time.fixedDeltaTime;
+            rb.rotation = Quaternion.AngleAxis(output.rotation, transform.up);
+            //rb.velocity = output.velocity;
+            //rb.rotation.SetEulerRotation(output.rotation);
+        }
     }
 }
