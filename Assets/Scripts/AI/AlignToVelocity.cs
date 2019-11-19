@@ -21,7 +21,7 @@ public class AlignToVelocity : Kinematic
     }
 
     // force the orientation of a character to be in the direction it is travelling
-    float getNewOrientation(float currentOrientation, Vector3 _velocity)
+    public static float getNewOrientation(float currentOrientation, Vector3 _velocity)
     {
         // Make sure we have a velocity
         if (_velocity.magnitude > 0.0f)
