@@ -11,18 +11,10 @@ public class KinematicSeek : Kinematic
     // Holds the maximum speed the character can travel
     public float maxSpeed;
 
-    public struct KinematicSteeringOutput
-    {
-        public Vector3 velocity;
-        //public Quaternion rotation;
-        //public Vector3 rotation;
-        public float rotation;
-    }
-
-    KinematicSteeringOutput getSteering()
+    SteeringOutput getSteering()
     {
         // Create the structure for output
-        KinematicSteeringOutput steering = new KinematicSteeringOutput();
+        SteeringOutput steering = new SteeringOutput();
 
         // Get the direction to the target
         steering.velocity = target.position - this.position;
@@ -56,7 +48,7 @@ public class KinematicSeek : Kinematic
     {
         if (rb != null)
         {
-            KinematicSteeringOutput output = getSteering();
+            SteeringOutput output = getSteering();
             //Rigidbody rb = GetComponentInChildren<Rigidbody>();
             //transform.rotation.SetEulerAngles(0, output.rotation, 0);
             rb.velocity = output.velocity;
