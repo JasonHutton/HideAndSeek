@@ -22,6 +22,11 @@ public class KinematicWander2 : Kinematic
         // Create the structure for output
         SteeringOutput steering = new SteeringOutput();
 
+        /*
+         * THIS SEEMS BAD. FACING AND MOVEMENT SHOULD BE INDEPENDENT. WHY ARE WE CHANGING ORIENTATION AT ALL?
+         * Just align the vector to the velocity(derive it from the rotation), and maybe ditch the timer entirely, just use smaller steps so it turns more smoothly.
+         */
+
         // Get velocity from the vector form of the orientation
         steering.velocity = maxSpeed * AngleToVector(this.orientation);//this.orientation.asVector()
 
