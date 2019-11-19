@@ -18,7 +18,7 @@ public class GenerateGrid : MonoBehaviour
 
         nodes = new List<Node>();
 
-        Generate(TopLeft, BottomRight, distance);
+        Generate(TopLeft, BottomRight, distance); // Distance must be > 0
 
         ConnectNodes(nodes, distance);// * 1.5f);
     }
