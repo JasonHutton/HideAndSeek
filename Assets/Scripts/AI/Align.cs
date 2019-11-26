@@ -32,9 +32,33 @@ public class Align : Kinematic
 
     }
 
+    /*
+    func(align* Align) mapToRange(rotation float64) float64 {
+	for rotation< -math.Pi {
+		rotation += math.Pi* 2
+	}
+	for rotation > math.Pi {
+		rotation -= math.Pi* 2
+	}
+	return rotation
+}
+*/
+    float mapToRange(float orientation)
+    {
+        while(orientation < -Mathf.PI)
+        {
+            orientation += Mathf.PI * 2;
+        }
+        while(orientation > Mathf.PI * 2)
+        {
+            orientation -= Mathf.PI * 2;
+        }
+
+        return orientation;
+    }
+
     void GetSteering()//Kinematic _target)
     {
-        /*
         // Create the structure to hold our output
         SteeringOutput steering = new SteeringOutput();
 
@@ -75,6 +99,6 @@ public class Align : Kinematic
 
         // Output the steering
         steering.linear = 0
-        return steering*/
+        return steering
     }
 }
