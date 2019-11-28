@@ -44,7 +44,7 @@ public class KinematicSeek : Kinematic
         base.Update();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (rb != null)
         {

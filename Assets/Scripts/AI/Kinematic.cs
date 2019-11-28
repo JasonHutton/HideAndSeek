@@ -37,5 +37,8 @@ public class Kinematic : MonoBehaviour
         UpdateVariablesFromRB();
     }
 
-
+    /*protected virtual void FixedUpdate()
+    {
+        UpdateVariablesFromRB();
+    }*/
 }
