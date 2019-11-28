@@ -22,8 +22,13 @@ public class Shield : MonoBehaviour
         }
     }
 
-    public void ShieldActive(bool on)
+    public void SetShieldActive(bool on)
     {
         gameObject.SetActive(on);
+    }
+
+    public bool GetShieldActive()
+    {
+        return gameObject.activeSelf;
     }
 }

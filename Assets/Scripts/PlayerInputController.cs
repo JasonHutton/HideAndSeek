@@ -35,6 +35,9 @@ public class PlayerInputController : InputControllerI
         if (MoveForward && MoveBackward)
             MoveForward = MoveBackward = false;
 
+        Fire = Input.GetButtonDown("Fire1"); // Left Control
+        Shield = Input.GetButtonDown("Jump"); // Space
+
         //Debug.Log(string.Format("MoveLeft: {0} MoveRight: {1} MoveUp: {2} MoveDown: {3}", MoveLeft, MoveRight, MoveUp, MoveDown));
     }
 }

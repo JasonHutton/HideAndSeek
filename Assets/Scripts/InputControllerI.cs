@@ -15,6 +15,7 @@ public class InputControllerI : MonoBehaviour
     void Start()
     {
         ResetMovement();
+        ResetActions();
     }
     public void ResetMovement()
     {
@@ -22,6 +23,10 @@ public class InputControllerI : MonoBehaviour
         MoveBackward = false;
         TurnLeft = false;
         TurnRight = false;
+    }
+
+    public void ResetActions()
+    {
         Fire = false;
         Shield = false;
     }

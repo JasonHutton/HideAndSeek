@@ -17,12 +17,14 @@ public class MovementEffector : MonoBehaviour
 
     private Rigidbody rb;
     private Gun GunScript;
+    private Shield ShieldScript;
 
     void Start()
     {
         ControllerScript = GetComponent<InputControllerI>();
         rb = GetComponentInChildren<Rigidbody>();
         GunScript = GetComponent<Gun>();
+        ShieldScript = GetComponentInChildren<Shield>(true);
         //rb.isKinematic = true;
     }
 
@@ -89,15 +91,17 @@ public class MovementEffector : MonoBehaviour
 
     void HandleActions()
     {
-        if(Fire)
+        if(GunScript && Fire)
         {
             // Check firing delay.
             // Fire
+            GunScript.Fire();
         }
-        if(Shield)
+        if(ShieldScript && Shield)
         {
             // Check shield delay
             // Shield
+            ShieldScript.SetShieldActive(!ShieldScript.GetShieldActive());
         }
     }
 
