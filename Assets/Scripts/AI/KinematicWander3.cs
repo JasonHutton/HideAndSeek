@@ -26,7 +26,7 @@ public class KinematicWander3 : Kinematic
             SteeringOutput output = GetSteering();
 
             rb.velocity = output.velocity;// rb.transform.forward * 10f;// rb.rotation.eulerAngles * 10f;// output.velocity;// rb.transform.forward;// * 1.0f * 20f * Time.fixedDeltaTime;
-            //rb.rotation = Quaternion.AngleAxis(output.rotation, transform.up);// Quaternion.AngleAxis(output.rotation, transform.up);
+            rb.rotation = Quaternion.AngleAxis(output.rotation, transform.up);// Quaternion.AngleAxis(output.rotation, transform.up);
         }
     }
 
@@ -34,7 +34,7 @@ public class KinematicWander3 : Kinematic
     {
         SteeringOutput steering = new SteeringOutput();
         steering.velocity = maxSpeed * AngleToVector(this._static.orientation);
-        //steering.rotation = RandomBinomial() * maxRotation;
+        steering.rotation = RandomBinomial() * maxRotation;
         return steering;
     }
 
