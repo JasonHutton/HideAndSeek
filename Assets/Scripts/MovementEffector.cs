@@ -12,12 +12,17 @@ public class MovementEffector : MonoBehaviour
     public bool TurnLeft;
     public bool TurnRight;
 
+    public bool Fire;
+    public bool Shield;
+
     private Rigidbody rb;
+    private Gun GunScript;
 
     void Start()
     {
         ControllerScript = GetComponent<InputControllerI>();
         rb = GetComponentInChildren<Rigidbody>();
+        GunScript = GetComponent<Gun>();
         //rb.isKinematic = true;
     }
 
@@ -30,6 +35,9 @@ public class MovementEffector : MonoBehaviour
             MoveBackward = ControllerScript.MoveBackward;
             TurnLeft = ControllerScript.TurnLeft;
             TurnRight = ControllerScript.TurnRight;
+
+            Fire = ControllerScript.Fire;
+            Shield = ControllerScript.Shield;
         }
 
         //getNewOrientation(transform.eulerAngles, rb.velocity);
@@ -46,6 +54,7 @@ public class MovementEffector : MonoBehaviour
     private void FixedUpdate()
     {
         HandleMovement();
+        HandleActions();
         //Debug.Log(transform.forward);
     }
 
@@ -76,6 +85,20 @@ public class MovementEffector : MonoBehaviour
 
         rb.velocity = rb.transform.forward * forwardBack * speed * Time.fixedDeltaTime;
         rb.angularVelocity = rb.transform.up * leftRight * rotationSpeed * Time.fixedDeltaTime;
+    }
+
+    void HandleActions()
+    {
+        if(Fire)
+        {
+            // Check firing delay.
+            // Fire
+        }
+        if(Shield)
+        {
+            // Check shield delay
+            // Shield
+        }
     }
 
     /*
