@@ -5,6 +5,7 @@ using UnityEngine;
 public class AlignToTarget : UpdateOrientation
 {
     public Kinematic target;
+    public bool alignAwayFromTarget;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -18,7 +19,10 @@ public class AlignToTarget : UpdateOrientation
         base.Update();
         if (target != null)
         {
-            this.orientationVector = target._static.position - this._static.position;
+            if(!alignAwayFromTarget)
+                this.orientationVector = target._static.position - this._static.position; // Align towards target
+            else
+                this.orientationVector = this._static.position - target._static.position; // Align away from target.
         }
     }
 

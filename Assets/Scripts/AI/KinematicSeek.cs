@@ -10,6 +10,7 @@ public class KinematicSeek : Kinematic
 
     // Holds the maximum speed the character can travel
     public float maxSpeed;
+    public bool flee; // Normally Seek. Enable this to flee.
 
     SteeringOutput getSteering()
     {
@@ -17,7 +18,10 @@ public class KinematicSeek : Kinematic
         SteeringOutput steering = new SteeringOutput();
 
         // Get the direction to the target
-        steering.velocity = target._static.position - this._static.position;
+        if(!flee)
+            steering.velocity = target._static.position - this._static.position; // Seek towards target.
+        else
+            steering.velocity = this._static.position - target._static.position; // Flee away from target.
 
         // The velocity is along this direction, at full speed
         steering.velocity.Normalize();

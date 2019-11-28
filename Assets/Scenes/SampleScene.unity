@@ -250,6 +250,7 @@ MonoBehaviour:
   rotation: 0
   orientationVector: {x: 0, y: 0, z: 0}
   target: {fileID: 346150262}
+  alignAwayFromTarget: 0
 --- !u!114 &624646755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +267,7 @@ MonoBehaviour:
   rotation: 0
   target: {fileID: 346150262}
   maxSpeed: 20
+  flee: 0
 --- !u!114 &624646757
 MonoBehaviour:
   m_ObjectHideFlags: 0
