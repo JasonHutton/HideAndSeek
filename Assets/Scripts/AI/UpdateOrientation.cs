@@ -7,18 +7,18 @@ public class UpdateOrientation : Kinematic
     public Vector3 orientationVector;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         base.Update();
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (rb != null)
         {

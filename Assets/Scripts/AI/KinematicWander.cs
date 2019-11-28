@@ -55,20 +55,20 @@ public class KinematicWander : Kinematic
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         base.Start();
         wanderChangeTimer = -1.0f; // Start it below 0, so it gets adjusted on the first iteration.
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         base.Update();
     }
 
     // DON'T FORGET FACING AND VELOCITY SHOULD BE INDEPENDENT!
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (rb != null)
         {

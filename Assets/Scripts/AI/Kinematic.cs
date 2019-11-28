@@ -10,7 +10,7 @@ public class Kinematic : MonoBehaviour
 
     protected Rigidbody rb;
 
-    protected void Start()
+    protected virtual void Start()
     {
         _static = new Static();
         rb = GetComponent<Rigidbody>();
@@ -18,9 +18,10 @@ public class Kinematic : MonoBehaviour
         {
             rb = GetComponentInChildren<Rigidbody>();
         }
+        UpdateVariablesFromRB();
     }
 
-    protected void Update()
+    protected void UpdateVariablesFromRB()
     {
         if (rb != null)
         {
@@ -29,6 +30,11 @@ public class Kinematic : MonoBehaviour
             velocity = rb.velocity;
             rotation = rb.angularVelocity.y; // Not sure about that...
         }
+    }
+
+    protected virtual void Update()
+    {
+        UpdateVariablesFromRB();
     }
 
 

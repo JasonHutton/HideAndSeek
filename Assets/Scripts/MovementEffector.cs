@@ -57,7 +57,7 @@ public class MovementEffector : MonoBehaviour
         float leftRight = 0.0f;
         float speed = 1000.0f;
         float rotationSpeed = 100.0f;
-        float maxSpeed = 100.0f;
+        //float maxSpeed = 100.0f;
 
         if (TurnLeft)
             leftRight = -1.0f;
