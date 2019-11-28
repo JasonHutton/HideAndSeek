@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlignToVelocity : UpdateOrientation
+public class AlignToTarget : UpdateOrientation
 {
+    public Kinematic target;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +16,10 @@ public class AlignToVelocity : UpdateOrientation
     void Update()
     {
         base.Update();
-        this.orientationVector = this.velocity;
+        if (target != null)
+        {
+            this.orientationVector = target._static.position - this._static.position;
+        }
     }
 
     void FixedUpdate()

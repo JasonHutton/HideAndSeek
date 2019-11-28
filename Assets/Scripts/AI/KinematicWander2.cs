@@ -28,7 +28,7 @@ public class KinematicWander2 : Kinematic
          */
 
         // Get velocity from the vector form of the orientation
-        steering.velocity = maxSpeed * AngleToVector(this.orientation);//this.orientation.asVector()
+        steering.velocity = maxSpeed * AngleToVector(this._static.orientation);//this.orientation.asVector()
 
         // Change our orientation randomly
         steering.rotation = randomBinomial() * maxRotation;

@@ -216,6 +216,18 @@ MonoBehaviour:
   MoveBackward: 0
   TurnLeft: 0
   TurnRight: 0
+--- !u!114 &346150262 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4035655623762452219, guid: d475383f6a3662d458621cadbbfbc123,
+    type: 3}
+  m_PrefabInstance: {fileID: 346150259}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346150260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1adc3a1a2d07b84997fcaa715a5fd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &624646749 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8630776787920440435, guid: d475383f6a3662d458621cadbbfbc123,
@@ -231,15 +243,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 624646749}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f33fabb79fc16a4b886357d49420202, type: 3}
+  m_Script: {fileID: 11500000, guid: 3cffd6abc2a334048a51aa27ab4e8a0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveForward: 0
-  MoveBackward: 0
-  TurnLeft: 0
-  TurnRight: 0
-  minDirectionChangeInterval: 0.3
-  maxDirectionChangeInterval: 0.8
+  velocity: {x: 0, y: 0, z: 0}
+  rotation: 0
+  _target: {fileID: 346150262}
+  maxAngularAcceleration: 20
+  maxRotation: 180
+  targetRadius: 0
+  slowRadius: 0
+  timeToTarget: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +602,9 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 87a1ce6ffeca6dc4480626e846c01e52, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 346150263, guid: d475383f6a3662d458621cadbbfbc123, type: 3}
+    - {fileID: 4035655623762452219, guid: d475383f6a3662d458621cadbbfbc123, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d475383f6a3662d458621cadbbfbc123, type: 3}
 --- !u!1001 &6753568539465341002
 PrefabInstance:
@@ -656,6 +672,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775501153776264363, guid: 4d2e94e550d220d498730984f9378743,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d2e94e550d220d498730984f9378743, type: 3}

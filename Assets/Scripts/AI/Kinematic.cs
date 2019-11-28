@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Kinematic : MonoBehaviour
 {
-    public Vector3 position; // a 2 or 3D vector
-    public float orientation; // a single floating point value
+    public Static _static;
     public Vector3 velocity; // another 2 or 3D vector
     public float rotation; // a single floating point value
 
@@ -13,6 +12,7 @@ public class Kinematic : MonoBehaviour
 
     protected void Start()
     {
+        _static = new Static();
         rb = GetComponent<Rigidbody>();
         if (rb == null)
         {
@@ -24,8 +24,8 @@ public class Kinematic : MonoBehaviour
     {
         if (rb != null)
         {
-            position = rb.position;
-            orientation = rb.rotation.eulerAngles.y;
+            _static.position = rb.position;
+            _static.orientation = rb.rotation.eulerAngles.y;
             velocity = rb.velocity;
             rotation = rb.angularVelocity.y; // Not sure about that...
         }

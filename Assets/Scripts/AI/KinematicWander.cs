@@ -21,11 +21,11 @@ public class KinematicWander : Kinematic
 
         // Get velocity from the vector form of the orientation
         //steering.velocity = maxSpeed * AngleToVector(this.orientation);
-        Vector3 pos1 = AngleToVector(this.orientation);
+        Vector3 pos1 = AngleToVector(this._static.orientation);
         Vector3 pos2 = rb.transform.forward;
         //Vector3 pos1f = AlignToVelocity.getNewOrientation(Quaternion.AngleAxis(this.orientation, transform.up), pos1);
 
-        steering.velocity = AngleToVector(this.orientation);// rb.transform.forward;// Vector3.zero - this.position;
+        steering.velocity = AngleToVector(this._static.orientation);// rb.transform.forward;// Vector3.zero - this.position;
         // The velocity is along this direction, at full speed
         steering.velocity.Normalize();
         steering.velocity *= maxSpeed;
