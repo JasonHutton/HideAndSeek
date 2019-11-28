@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Barrier
+  - Shield
+  - Shell
   layers:
   - Default
   - TransparentFX
