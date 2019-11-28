@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    public GameObject owner;
+    private Rigidbody ownerRB;
 
     // Start is called before the first frame update
     void Start()
     {
+        ownerRB = gameObject.transform.parent.GetComponentInChildren<Rigidbody>();
         gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.activeSelf)
+        if (ownerRB != null && gameObject.activeSelf)
         {
-            gameObject.transform.position = owner.transform.position;
+            gameObject.transform.position = ownerRB.transform.position;
         }
     }
 
