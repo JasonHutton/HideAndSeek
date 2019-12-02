@@ -40,6 +40,7 @@ public class Gun : MonoBehaviour
             reloadIntervalTimer = Time.fixedTime + reloadTime;
 
             GameObject shell = Instantiate(shellPrefab, ownerRB.position, ownerRB.rotation) as GameObject;
+            shell.gameObject.layer = this.gameObject.layer;
             Shell shellScript = shell.GetComponentInChildren<Shell>();
             shellScript.velocity = ownerRB.transform.forward * shellVelocity;
             shells.Add(shell);
