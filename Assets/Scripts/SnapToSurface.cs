@@ -12,7 +12,9 @@ public class SnapToSurface : MonoBehaviour
         RaycastHit hitInfo;
         if(Physics.Raycast(transform.position, SnapInDirection, out hitInfo))
         {
-            transform.position = hitInfo.point;
+            Vector3 newPosition = hitInfo.point;
+            newPosition.y += transform.localScale.y / 2; // SnapInDirection would be far better for this, but not going to deal with it right now.
+            transform.position = newPosition;
         }
 
     }
