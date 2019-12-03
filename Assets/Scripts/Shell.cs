@@ -59,6 +59,25 @@ public class Shell : Poolable
         ReturnToPool();
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        Shield shield = other.gameObject.GetComponent<Shield>();
+        if (shield != null)
+        {
+            // Is it someone else's shot?
+            if(shield.gameObject.layer != gameObject.layer)
+            {
+                if (despawnCoroutine != null)
+                {
+                    StopCoroutine(despawnCoroutine);
+                    despawnCoroutine = null;
+                }
+                Die();
+                ReturnToPool();
+            }
+        }
+    }
+
     public void Fire(Vector3 direction, Vector3 position, Quaternion rotation)
     {
         rb.position = transform.position = position;
