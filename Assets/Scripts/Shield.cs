@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shield : MonoBehaviour
 {
     private Rigidbody ownerRB;
+    public AudioSource shieldUpSound;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,10 @@ public class Shield : MonoBehaviour
     public void SetShieldActive(bool on)
     {
         gameObject.SetActive(on);
+        if(on)
+        {
+            shieldUpSound.Play();
+        }
     }
 
     public bool GetShieldActive()

@@ -28,7 +28,7 @@ public class EffectManager : MonoBehaviour
     /// <param name="key">Object pooler key.</param>
     /// <param name="pos">Position to play at.</param>
     /// <param name="particleScale">Size of particle effect.</param>
-    public void PlayAt(string key, Vector2 pos, float particleScale)
+    public void PlayAt(string key, Vector3 pos, float particleScale)
     {
         EffectRunner e = ObjectPooler.Instance.Pop(key).GetComponent<EffectRunner>();
         e.transform.position = pos;
