@@ -408,6 +408,8 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -480,6 +482,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a523456ea1cddb44696fd33a2e0248b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolTypes:
+  - name: Shell
+    prefab: {fileID: 8350061207458259738, guid: bbc2cad03002d7441a392088709f7172,
+      type: 3}
+    initialCount: 0
+    shouldExpand: 1
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eabd39af288dbf4aa0a379a334ffe1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1754609172
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,15 +691,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6686791319400725427, guid: d475383f6a3662d458621cadbbfbc123,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 87a1ce6ffeca6dc4480626e846c01e52, type: 2}
-    - target: {fileID: 346150263, guid: d475383f6a3662d458621cadbbfbc123, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4510932438922199916, guid: d475383f6a3662d458621cadbbfbc123,
         type: 3}
       propertyPath: m_Layer
@@ -677,6 +700,15 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686791319400725427, guid: d475383f6a3662d458621cadbbfbc123,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 87a1ce6ffeca6dc4480626e846c01e52, type: 2}
+    - target: {fileID: 346150263, guid: d475383f6a3662d458621cadbbfbc123, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d475383f6a3662d458621cadbbfbc123, type: 3}
@@ -751,6 +783,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -2.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753568540383071684, guid: 4d2e94e550d220d498730984f9378743,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d2e94e550d220d498730984f9378743, type: 3}

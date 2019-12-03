@@ -122,4 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb513ea14c4320489332889d9d61116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0, z: 0}
+  speed: 30
+  lifetime: 5
+  damage: 100
+  hitEffectKey: ShellExplode
+  dieEffectKey: 

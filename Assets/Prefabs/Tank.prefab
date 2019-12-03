@@ -216,8 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3000d32d369ff3a449864d47647f5837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shellVelocity: 40
-  reloadTime: 2
+  reloadTime: 0.5
   shellPrefab: {fileID: 3289480630428350541, guid: bbc2cad03002d7441a392088709f7172,
     type: 3}
 --- !u!1001 &7089621629010840160
