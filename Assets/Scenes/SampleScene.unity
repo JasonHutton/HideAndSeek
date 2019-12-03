@@ -504,6 +504,11 @@ MonoBehaviour:
     prefab: {fileID: 84249504314784051, guid: 6433a9e73d7b4ad48a01f8816939bb08, type: 3}
     initialCount: 0
     shouldExpand: 1
+  - name: ShellDestroy
+    prefab: {fileID: 6756522466500547534, guid: 65223f4b37ac9de4f97489b64c989192,
+      type: 3}
+    initialCount: 0
+    shouldExpand: 1
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0

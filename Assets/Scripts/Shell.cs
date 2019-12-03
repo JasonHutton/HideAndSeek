@@ -74,7 +74,6 @@ public class Shell : Poolable
     private IEnumerator DespawnTimer()
     {
         yield return new WaitForSeconds(lifetime);
-        Die();
         ReturnToPool();
     }
 
