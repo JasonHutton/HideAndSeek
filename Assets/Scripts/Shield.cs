@@ -11,7 +11,7 @@ public class Shield : MonoBehaviour
     void Start()
     {
         ownerRB = gameObject.transform.parent.GetComponentInChildren<Rigidbody>();
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     // Update is called once per frame
