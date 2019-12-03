@@ -15,8 +15,11 @@ public class EffectRunner : Poolable
         sound = GetComponent<AudioSource>();
 
         Transform t = transform.Find("ExplosionEffect");
-        particle = t.GetComponent<ParticleSystem>();
-        initialScale = t.localScale;
+        if (t != null)
+        {
+            particle = t.GetComponent<ParticleSystem>();
+            initialScale = t.localScale;
+        }
     }
 
     public void Play(float particleScale)
@@ -24,16 +27,22 @@ public class EffectRunner : Poolable
         gameObject.SetActive(true);
         if (sound != null) sound.Play();
 
-        particle.transform.localScale = initialScale * particleScale;
-        particle.Play();
+        if (particle != null)
+        {
+            particle.transform.localScale = initialScale * particleScale;
+            particle.Play();
+        }
 
         StartCoroutine(DestroyWhenComplete());
     }
 
     IEnumerator DestroyWhenComplete()
     {
-        float delay;
-        delay = particle.main.duration;
+        float delay = 0.0f;
+        if (particle != null)
+        {
+            delay = particle.main.duration;
+        }
         if (sound != null && delay < sound.clip.length)
             delay = sound.clip.length;
 
