@@ -66,7 +66,7 @@ public class MovementEffector : MonoBehaviour
         Vector3 rotation = rb.rotation.eulerAngles;
         float forwardBack = 0.0f;
         float leftRight = 0.0f;
-        float speed = 1000.0f;
+        float speed = 500.0f;
         float rotationSpeed = 100.0f;
         //float maxSpeed = 100.0f;
 
