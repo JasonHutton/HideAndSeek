@@ -7,11 +7,13 @@ public class Tank : MonoBehaviour
     public int health;
     private bool alive;
     public string dieEffectKey;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
         alive = true;
+        rb = GetComponentInChildren<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -47,7 +49,7 @@ public class Tank : MonoBehaviour
     void Die()
     {
         alive = false;
-        EffectManager.Instance.PlayAt(dieEffectKey, transform.position, 1.0f);
+        EffectManager.Instance.PlayAt(dieEffectKey, rb.position, 1.0f);
         Destroy(gameObject);
     }
 }
