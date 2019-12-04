@@ -49,11 +49,15 @@ public class Shell : Poolable
         }
 
         // TODO: maybe damageable objects should have a tag? string comparison may be faster than getting component and null checking
-        /*IDamageable enemy = col.gameObject.GetComponent<IDamageable>();
-        if (enemy != null)
+        GameObject hitObj = col.gameObject;
+        if(hitObj.CompareTag("Tank"))
         {
-            enemy.InflictDamage(damage, gameObject.tag);
-        }*/
+            Tank tank = hitObj.GetComponentInParent<Tank>();
+            if (tank != null)
+            {
+                tank.InflictDamage(damage);
+            }
+        }
 
         Hit();
         ReturnToPool();
