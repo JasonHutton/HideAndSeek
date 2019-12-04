@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tank : MonoBehaviour
 {
     public int health;
+    public float maxSpeed;
     private bool alive;
     public string dieEffectKey;
     private Rigidbody rb;

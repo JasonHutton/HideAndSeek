@@ -212,6 +212,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 331226919288537813, guid: d475383f6a3662d458621cadbbfbc123,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d475383f6a3662d458621cadbbfbc123, type: 3}
 --- !u!1 &346150260 stripped
@@ -280,7 +285,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624646749}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 988bea25d43c595458d1186bca379ecc, type: 3}
   m_Name: 
@@ -306,6 +311,25 @@ MonoBehaviour:
   rotation: 0
   maxSpeed: 20
   maxRotation: 360
+--- !u!114 &624646760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624646749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e7cd6f57602a19469a1fb4392078e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveForward: 0
+  MoveBackward: 0
+  TurnLeft: 0
+  TurnRight: 0
+  Fire: 0
+  Shield: 0
+  target: {fileID: 346150262}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +751,11 @@ PrefabInstance:
     - target: {fileID: 346150263, guid: d475383f6a3662d458621cadbbfbc123, type: 3}
       propertyPath: ShieldStatus
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 331226919288537813, guid: d475383f6a3662d458621cadbbfbc123,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d475383f6a3662d458621cadbbfbc123, type: 3}
