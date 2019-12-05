@@ -6,6 +6,14 @@ public class Shield : MonoBehaviour
 {
     private Rigidbody ownerRB;
     public AudioSource shieldUpSound;
+    public float totalShieldCharge;
+    private float shieldCharge;
+    public float shieldDepletionPerTick;
+
+    private void Awake()
+    {
+        shieldCharge = totalShieldCharge;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -23,13 +31,30 @@ public class Shield : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if(GetShieldActive())
+        {
+            shieldCharge -= shieldDepletionPerTick;
+            if(shieldCharge < shieldDepletionPerTick)
+            {
+                SetShieldActive(false);
+            }
+        }
+    }
+
     public void SetShieldActive(bool on)
     {
-        gameObject.SetActive(on);
-        if(on)
+        if(on == true && shieldCharge >= shieldDepletionPerTick)
         {
+            gameObject.SetActive(true);
             shieldUpSound.Play();
         }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+
     }
 
     public bool GetShieldActive()
