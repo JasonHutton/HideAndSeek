@@ -330,6 +330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  maxSpeed: 200
+  maxRotSpeed: 80
   dieEffectKey: TankExplode
 --- !u!1001 &7089621629010840160
 PrefabInstance:
