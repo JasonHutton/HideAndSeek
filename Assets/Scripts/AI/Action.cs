@@ -8,4 +8,19 @@ public class Action : DecisionTreeNode
     {
         return this;
     }
+
+    public void GetExitAction()
+    {
+
+    }
+
+    public void GetAction()
+    {
+
+    }
+
+    public void GetEntryAction()
+    {
+
+    }
 }
