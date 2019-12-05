@@ -29,7 +29,7 @@ public class AIInputController2 : InputControllerI
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         bool bWantToFire = false;
         bool bWantToShield = false;
