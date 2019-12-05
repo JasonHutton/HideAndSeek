@@ -24,7 +24,8 @@ public class AIInputController2 : InputControllerI
         SteeringOutput steering = new SteeringOutput();
         // Blend Steering
         steering += Seek.GetSteering(target._static.position, self._static.position, tank.maxSpeed).Weight(1.0f);
-        steering += AlignToTarget2.GetSteering(target._static.position, self._static.position, self._static.orientation).Weight(1.0f);
+        //steering += Flee.GetSteering(target._static.position, self._static.position, tank.maxSpeed).Weight(1.0f);
+        //steering += AlignToTarget2.GetSteering(target._static.position, self._static.position, self._static.orientation).Weight(1.0f);
         Rigidbody srb = tank.GetComponentInChildren<Rigidbody>();
         //steering.Crop();
         float angle = Vector3.SignedAngle(steering.velocity.normalized, srb.transform.forward, transform.up);
