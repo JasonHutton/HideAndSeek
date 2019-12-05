@@ -16,15 +16,22 @@ public class MovementEffector : MonoBehaviour
     public bool Shield;
 
     private Rigidbody rb;
+    private Tank tank;
     private Gun GunScript;
     private Shield ShieldScript;
 
     public bool ShieldStatus;
 
+    private float maxSpeed;
+    private float maxRotSpeed;
+
     void Start()
     {
         ControllerScript = GetComponent<InputControllerI>();
         rb = GetComponentInChildren<Rigidbody>();
+        tank = GetComponent<Tank>();
+        maxSpeed = tank.maxSpeed;
+        maxRotSpeed = tank.maxRotSpeed;
         GunScript = GetComponent<Gun>();
         ShieldScript = GetComponentInChildren<Shield>(true);
         if (ShieldScript)
@@ -72,9 +79,6 @@ public class MovementEffector : MonoBehaviour
         Vector3 rotation = rb.rotation.eulerAngles;
         float forwardBack = 0.0f;
         float leftRight = 0.0f;
-        float speed = 500.0f;
-        float rotationSpeed = 100.0f;
-        //float maxSpeed = 100.0f;
 
         if (TurnLeft)
             leftRight = -1.0f;
@@ -91,8 +95,8 @@ public class MovementEffector : MonoBehaviour
         if (forwardBack < 0.0f)
             leftRight = -leftRight;
 
-        rb.velocity = rb.transform.forward * forwardBack * speed * Time.fixedDeltaTime;
-        rb.angularVelocity = rb.transform.up * leftRight * rotationSpeed * Time.fixedDeltaTime;
+        rb.velocity = rb.transform.forward * forwardBack * maxSpeed * Time.fixedDeltaTime;
+        rb.angularVelocity = rb.transform.up * leftRight * maxRotSpeed * Time.fixedDeltaTime;
     }
 
     void HandleActions()

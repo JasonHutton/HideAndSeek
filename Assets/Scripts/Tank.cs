@@ -6,6 +6,7 @@ public class Tank : MonoBehaviour
 {
     public int health;
     public float maxSpeed;
+    public float maxRotSpeed;
     private bool alive;
     public string dieEffectKey;
     private Rigidbody rb;
