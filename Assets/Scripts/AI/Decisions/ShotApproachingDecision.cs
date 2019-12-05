@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class ShotApproachingDecision : Decision
 {
+    public float testData;
     public override DecisionTreeNode GetBranch()
     {
-        return this; // Fix me
+        if (testData < 8.0f) // Distance to nearest shot on approach.
+            return trueNode;
+        else
+            return falseNode;
     }
 }

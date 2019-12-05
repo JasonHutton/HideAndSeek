@@ -24,8 +24,34 @@ public class AIInputController2 : InputControllerI
         ((Decision)dTree).testData = mEffector.ShieldStatus;
         ((CheckShieldOnDecision)dTree).trueNode = new Action(); // Shield is on. Keep the shield on.
         ((CheckShieldOnDecision)dTree).falseNode = new CanEnableShieldDecision(); // Shield is off. Should we have the shield on?
-        ((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode = new ShieldOnAction(); // Turn the shield on
+        ((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode = new ShotApproachingDecision(); // Is there a shot approaching the tank?
         ((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).falseNode = new Action(); // Can't turn shield on.
+        ((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).trueNode = new ShieldOnAction(); // Turn the shield on
+        ((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).falseNode = new Action(); // Don't turn shield on.
+    }
+
+    float CheckForNearestShellDistance()
+    {
+        float shortest = 100f; // Far away.
+
+        GameObject[] shells = GameObject.FindGameObjectsWithTag("Shell");
+        if (shells.Length == 0)
+            return shortest;
+
+        foreach (GameObject go in shells)
+        {
+            Rigidbody goRB = go.GetComponent<Rigidbody>();
+            if (goRB != null)
+            {
+                float dist = Vector3.Distance(self._static.position, goRB.position);
+                if (dist < shortest)
+                {
+                    shortest = dist;
+                }
+            }
+        }
+
+        return shortest;
     }
 
     // Update is called once per frame
@@ -36,7 +62,7 @@ public class AIInputController2 : InputControllerI
 
         ((Decision)dTree).testData = mEffector.ShieldStatus;
         ((Decision)(((Decision)dTree).falseNode)).testData = mEffector.ShieldStatus;
-        //((Decision)(((Decision)(((Decision)dTree).falseNode)).trueNode)).testData = mEffector.ShieldStatus;
+        ((ShotApproachingDecision)(((Decision)(((Decision)dTree).falseNode)).trueNode)).testData = CheckForNearestShellDistance();
         //((CanEnableShieldDecision)(((CheckShieldOnDecision)dTree).trueNode)).testData = mEffector.ShieldStatus;
         //((Decision)dTree).testData = mEffector.ShieldStatus;
 
