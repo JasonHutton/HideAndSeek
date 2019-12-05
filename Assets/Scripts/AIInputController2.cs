@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AIInputController2 : InputControllerI
 {
@@ -10,17 +11,36 @@ public class AIInputController2 : InputControllerI
     public Kinematic target;
     private Kinematic self;
     private Tank tank;
+    private MovementEffector mEffector;
+    private DecisionTreeNode dTree;
 
     // Start is called before the first frame update
     void Start()
     {
         self = GetComponent<Kinematic>();
         tank = GetComponent<Tank>();
+        mEffector = GetComponent<MovementEffector>();
+        dTree = new CheckShieldOnDecision();
+        ((CheckShieldOnDecision)dTree).trueNode = new Action(); // Shield is on. Keep the shield on.
+        ((CheckShieldOnDecision)dTree).falseNode = new CanEnableShieldDecision(); // Shield is off. Should we have the shield on?
+        ((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode = new ShieldOnAction(); // Turn the shield on
+        ((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).falseNode = new Action(); // Can't turn shield on.
     }
 
     // Update is called once per frame
     void Update()
     {
+        bool bWantToFire = false;
+        bool bWantToShield = false;
+
+        ((Decision)dTree).testData = mEffector.ShieldStatus;
+
+        DecisionTreeNode node = dTree.MakeDecision();
+        if (node is ShieldOnAction)
+        {
+            bWantToShield = true;
+        }
+
         SteeringOutput steering = new SteeringOutput();
         // Blend Steering
         steering += Seek.GetSteering(target._static.position, self._static.position, tank.maxSpeed).Weight(1.0f);
@@ -57,8 +77,8 @@ public class AIInputController2 : InputControllerI
         if (MoveForward && MoveBackward)
             MoveForward = MoveBackward = false;
 
-        //Fire = Input.GetButtonDown("Fire1"); // Left Control
-        //Shield = Input.GetButtonDown("Jump"); // Space
+        Fire = bWantToFire;
+        Shield = bWantToShield;
 
         //Debug.Log(string.Format("MoveLeft: {0} MoveRight: {1} MoveUp: {2} MoveDown: {3}", MoveLeft, MoveRight, MoveUp, MoveDown));
     }
