@@ -9,14 +9,19 @@ public class Seek
         // Create the structure for output
         SteeringOutput steering = new SteeringOutput();
 
-        // Get the direction to the target
-        steering.velocity = target - position; // Seek towards target.
+        SeekDirection(ref steering, target, position);
 
         // The velocity is along this direction, at full speed
         steering.velocity.Normalize();
         steering.velocity *= speed;
 
         return steering;
+    }
+
+    private static void SeekDirection(ref SteeringOutput steering, Vector3 target, Vector3 position)
+    {
+        // Get the direction to the target
+        steering.velocity = target - position; // Seek towards target.
     }
 }
 

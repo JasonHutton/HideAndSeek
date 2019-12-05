@@ -24,22 +24,30 @@ public class AIInputController2 : InputControllerI
         SteeringOutput steering = new SteeringOutput();
         // Blend Steering
         steering += Seek.GetSteering(target._static.position, self._static.position, tank.maxSpeed).Weight(1.0f);
+        steering += AlignToTarget2.GetSteering(target._static.position, self._static.position, self._static.orientation).Weight(1.0f);
         Rigidbody srb = tank.GetComponentInChildren<Rigidbody>();
         //steering.Crop();
         float angle = Vector3.SignedAngle(steering.velocity.normalized, srb.transform.forward, transform.up);
 
-        Horizontal = Input.GetAxisRaw("Horizontal");
-        Vertical = Input.GetAxisRaw("Vertical");
+        //Horizontal = Input.GetAxisRaw("Horizontal");
+        //Vertical = Input.GetAxisRaw("Vertical");
 
         ResetMovement();
 
-        if (angle > -90 && angle < 90)
-            MoveForward = true;
-        if (angle < -90 || angle > 90)
-            MoveBackward = true;
-        if (angle > 0)
+        if (steering.velocity.magnitude > 0)
+        {
+            if (angle > -90 && angle < 90)
+                MoveForward = true;
+            if (angle < -90 || angle > 90)
+                MoveBackward = true;
+            if (angle > 0)
+                TurnLeft = true;
+            if (angle < 0)
+                TurnRight = true;
+        }
+        if (steering.rotation < 0)
             TurnLeft = true;
-        if (angle < 0)
+        if (steering.rotation > 0)
             TurnRight = true;
 
         // Disable movement direction if inputs are contradicting each other.
