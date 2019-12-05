@@ -9,6 +9,13 @@ public class StateMachine
     State initialState;
     State currentState;
 
+    public StateMachine(List<State> _states)
+    {
+        // Got a problem here if _states.length == 0...
+        states = _states;
+        currentState = initialState = states[0];
+    }
+
     void Update()
     {
         Transition triggeredTransition = null;

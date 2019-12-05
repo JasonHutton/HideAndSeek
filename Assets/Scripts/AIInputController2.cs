@@ -14,6 +14,8 @@ public class AIInputController2 : InputControllerI
     private MovementEffector mEffector;
     private DecisionTreeNode dTree;
 
+    private StateMachine sm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class AIInputController2 : InputControllerI
         tank = GetComponent<Tank>();
         mEffector = GetComponent<MovementEffector>();
         dTree = new CheckShieldOnDecision();
+
         ((Decision)dTree).testData = mEffector.ShieldStatus;
         ((CheckShieldOnDecision)dTree).trueNode = new Action(); // Shield is on. Keep the shield on.
         ((CheckShieldOnDecision)dTree).falseNode = new CanEnableShieldDecision(); // Shield is off. Should we have the shield on?
@@ -28,6 +31,10 @@ public class AIInputController2 : InputControllerI
         ((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).falseNode = new Action(); // Can't turn shield on.
         ((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).trueNode = new ShieldOnAction(); // Turn the shield on
         ((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).falseNode = new Action(); // Don't turn shield on.
+
+        List<State> states = new List<State>();
+        //states.Add(new State());
+        sm = new StateMachine(states);
     }
 
     float CheckForNearestShellDistance()
