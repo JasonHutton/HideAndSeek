@@ -21,6 +21,7 @@ public class AIInputController2 : InputControllerI
         tank = GetComponent<Tank>();
         mEffector = GetComponent<MovementEffector>();
         dTree = new CheckShieldOnDecision();
+        ((Decision)dTree).testData = mEffector.ShieldStatus;
         ((CheckShieldOnDecision)dTree).trueNode = new Action(); // Shield is on. Keep the shield on.
         ((CheckShieldOnDecision)dTree).falseNode = new CanEnableShieldDecision(); // Shield is off. Should we have the shield on?
         ((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode = new ShieldOnAction(); // Turn the shield on
@@ -34,6 +35,9 @@ public class AIInputController2 : InputControllerI
         bool bWantToShield = false;
 
         ((Decision)dTree).testData = mEffector.ShieldStatus;
+        //((Decision)(((Decision)dTree).falseNode)).testData = mEffector.ShieldStatus;
+        //((CanEnableShieldDecision)(((CheckShieldOnDecision)dTree).trueNode)).testData = mEffector.ShieldStatus;
+        //((Decision)dTree).testData = mEffector.ShieldStatus;
 
         DecisionTreeNode node = dTree.MakeDecision();
         if (node is ShieldOnAction)
