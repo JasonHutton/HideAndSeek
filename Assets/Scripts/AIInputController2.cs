@@ -35,7 +35,8 @@ public class AIInputController2 : InputControllerI
         bool bWantToShield = false;
 
         ((Decision)dTree).testData = mEffector.ShieldStatus;
-        //((Decision)(((Decision)dTree).falseNode)).testData = mEffector.ShieldStatus;
+        ((Decision)(((Decision)dTree).falseNode)).testData = mEffector.ShieldStatus;
+        //((Decision)(((Decision)(((Decision)dTree).falseNode)).trueNode)).testData = mEffector.ShieldStatus;
         //((CanEnableShieldDecision)(((CheckShieldOnDecision)dTree).trueNode)).testData = mEffector.ShieldStatus;
         //((Decision)dTree).testData = mEffector.ShieldStatus;
 
