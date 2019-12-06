@@ -16,16 +16,16 @@ public class State
         return transitions;
     }
 
-    public void GetAction()
+    public void GetAction(AIInputController2 script)
     {
     }
 
-    public void GetEntryAction()
+    public void GetEntryAction(AIInputController2 script)
     {
 
     }
 
-    public void GetExitAction()
+    public void GetExitAction(AIInputController2 script)
     {
 
     }

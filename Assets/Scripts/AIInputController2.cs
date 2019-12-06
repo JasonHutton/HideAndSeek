@@ -15,6 +15,7 @@ public class AIInputController2 : InputControllerI
     private DecisionTreeNode dTree;
 
     private StateMachine sm;
+    public SteeringOutput steering;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +47,7 @@ public class AIInputController2 : InputControllerI
         states[1].GetTransitions()[0].targetState = states[0];
 
         //states[0].GetTransitions()[0].bTriggered = true;
-        sm = new StateMachine(states);
+        sm = new StateMachine(this, states);
     }
 
     float CheckForNearestShellDistance()
@@ -93,7 +94,7 @@ public class AIInputController2 : InputControllerI
             bWantToShield = true;
         }
 
-        SteeringOutput steering = new SteeringOutput();
+        steering = new SteeringOutput();
         // Blend Steering
         steering += Seek.GetSteering(target._static.position, self._static.position, tank.maxSpeed).Weight(1.0f);
         //steering += Flee.GetSteering(target._static.position, self._static.position, tank.maxSpeed).Weight(1.0f);

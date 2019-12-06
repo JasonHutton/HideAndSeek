@@ -8,7 +8,7 @@ public class FleeState : State
     {
         Debug.Log("FleeConstructor");
     }
-    public void GetAction()
+    public void GetAction(AIInputController2 script)
     {
         Debug.Log("FleeState");
     }

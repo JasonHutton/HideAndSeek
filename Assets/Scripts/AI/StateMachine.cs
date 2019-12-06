@@ -9,11 +9,14 @@ public class StateMachine
     State initialState;
     State currentState;
 
-    public StateMachine(List<State> _states)
+    private AIInputController2 script;
+
+    public StateMachine(AIInputController2 _script, List<State> _states)
     {
         // Got a problem here if _states.length == 0...
         states = _states;
         currentState = initialState = states[0];
+        script = _script;
     }
 
     public void Update()
@@ -33,9 +36,9 @@ public class StateMachine
         {
             State targetState = triggeredTransition.GetTargetState();
 
-            currentState.GetExitAction();
-            triggeredTransition.GetAction();
-            targetState.GetEntryAction();
+            currentState.GetExitAction(script);
+            triggeredTransition.GetAction(script);
+            targetState.GetEntryAction(script);
             /*
             # Add the exit action of the old state, the
             # transition action and the entry for the new state.
@@ -50,7 +53,7 @@ public class StateMachine
         }
         else
         {
-            currentState.GetAction();
+            currentState.GetAction(script);
         }
 
     }

@@ -8,7 +8,7 @@ public class FightState : State
     {
         Debug.Log("FightConstructor");
     }
-    public void GetAction()
+    public void GetAction(AIInputController2 script)
     {
         Debug.Log("FightState");
     }
