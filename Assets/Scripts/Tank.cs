@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Tank : MonoBehaviour
 {
     public int health;
@@ -10,6 +9,8 @@ public class Tank : MonoBehaviour
     private bool alive;
     public string dieEffectKey;
     private Rigidbody rb;
+
+    public GameObject restartPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +53,9 @@ public class Tank : MonoBehaviour
     {
         alive = false;
         EffectManager.Instance.PlayAt(dieEffectKey, rb.position, 1.0f);
+
+        Instantiate(restartPrefab);
+
         Destroy(gameObject);
     }
 }

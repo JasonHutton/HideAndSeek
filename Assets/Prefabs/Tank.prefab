@@ -333,6 +333,8 @@ MonoBehaviour:
   maxSpeed: 200
   maxRotSpeed: 80
   dieEffectKey: TankExplode
+  restartPrefab: {fileID: 1271525021956816696, guid: 1ff39bb53d6369849a3e467a047af3e0,
+    type: 3}
 --- !u!1001 &7089621629010840160
 PrefabInstance:
   m_ObjectHideFlags: 0
