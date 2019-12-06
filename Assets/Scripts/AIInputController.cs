@@ -26,12 +26,19 @@ public class AIInputController : InputControllerI
         dTree = new CheckShieldOnDecision();
 
         ((Decision)dTree).testData = mEffector.ShieldStatus;
-        ((CheckShieldOnDecision)dTree).trueNode = new Action(); // Shield is on. Keep the shield on.
-        ((CheckShieldOnDecision)dTree).falseNode = new CanEnableShieldDecision(); // Shield is off. Should we have the shield on?
+        ((CheckShieldOnDecision)dTree).trueNode = new ShotApproachingDecision(); // Shield is on. Is a shot approaching? (Should we leave it on?)
+
+        ((ShotApproachingDecision)((CheckShieldOnDecision)dTree).trueNode).trueNode = new Action(); // Leave the shield on, a shot is coming!
+        ((ShotApproachingDecision)((CheckShieldOnDecision)dTree).trueNode).falseNode = new ShieldOffAction(); // Turn the shield off to conserve power. We don't need it right now.
+
+        ((CheckShieldOnDecision)dTree).falseNode = new CanEnableShieldDecision(); // Shield is off. Can we have the shield on?
+
         ((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode = new ShotApproachingDecision(); // Is there a shot approaching the tank?
-        ((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).falseNode = new Action(); // Can't turn shield on.
         ((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).trueNode = new ShieldOnAction(); // Turn the shield on
         ((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).falseNode = new Action(); // Don't turn shield on.
+
+        ((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).falseNode = new Action(); // Can't turn shield on.
+        
 
         List<State> states = new List<State>();
         
@@ -91,6 +98,8 @@ public class AIInputController : InputControllerI
         
 
         ((Decision)dTree).testData = mEffector.ShieldStatus;
+        ((ShotApproachingDecision)(((Decision)dTree).trueNode)).testData = CheckForNearestShellDistance();
+
         ((Decision)(((Decision)dTree).falseNode)).testData = mEffector.ShieldStatus;
         ((ShotApproachingDecision)(((Decision)(((Decision)dTree).falseNode)).trueNode)).testData = CheckForNearestShellDistance();
         //((CanEnableShieldDecision)(((CheckShieldOnDecision)dTree).trueNode)).testData = mEffector.ShieldStatus;
@@ -100,6 +109,10 @@ public class AIInputController : InputControllerI
         if (node is ShieldOnAction)
         {
             bWantToShield = true;
+        }
+        if(node is ShieldOffAction)
+        {
+            bWantToShield = false; // Seems to be a bug here, shield isn't wanting to turn off.
         }
 
         steering = new SteeringOutput();

@@ -7,7 +7,7 @@ public class ShotApproachingDecision : Decision
     public float testData;
     public override DecisionTreeNode GetBranch()
     {
-        if (testData < 8.0f) // Distance to nearest shot on approach.
+        if (testData < 4.0f) // Distance to nearest shot on approach.
             return trueNode;
         else
             return falseNode;
