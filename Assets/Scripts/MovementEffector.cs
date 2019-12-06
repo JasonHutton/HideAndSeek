@@ -75,16 +75,6 @@ public class MovementEffector : MonoBehaviour
             Fire = ControllerScript.Fire;
             Shield = ControllerScript.Shield;
         }
-
-        //getNewOrientation(transform.eulerAngles, rb.velocity);
-        //Debug.DrawLine(transform.position, getNewOrientation(transform.eulerAngles, rb.velocity));
-        //Vector3 vel = rb.velocity;
-        //if (Vector3.Magnitude(vel) > 0)
-            //vel = Vector3.Normalize(vel);
-        //else
-            //vel = Vector3.Normalize(rb.transform.forward);
-        //vel = Vector3.Normalize(transform.rotation.eulerAngles);
-        //Debug.DrawLine(transform.position, transform.forward * 2);
     }
 
     private void FixedUpdate()
@@ -138,26 +128,12 @@ public class MovementEffector : MonoBehaviour
         }
     }
 
-    /*
-     * 
-     * Vector3 direction = (target.transform.position - transform.position).normalized;
-           rigidbody.MovePosition(transform.position + direction * movementSpeed * Time.deltaTime);
-     * 
-     * */
-
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Barrier")
         {
-            //transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-            //rb.velocity = Vector3.zero; // This is simplified, need to only stop in the direction of the barrier.
+            // This might be redundant? Leaving it.
             Debug.Log("Collided with a Barrier!");
-
-            //ContactPoint contact = collision.contacts[0];
-
-            // Rotate the object so that the y-axis faces along the normal of the surface
-            //Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
-            //rb.rotation = rot;
         }
     }
 

@@ -40,32 +40,3 @@ public class UpdateOrientation : Kinematic
         }
     }
 }
-
-/*
- * 
- Blaaaaah?
- * class Face (Align):
-2
-3 # Overrides the Align.target member
-4 target
-5
-6 # ... Other data is derived from the superclass ...
-7
-8 # Implemented as it was in Pursue
-9 def getSteering():
-10
-11 # 1. Calculate the target to delegate to align
-12
-13 # Work out the direction to target
-14 direction = target.position - character.position
-15
-16 # Check for a zero direction, and make no change if so
-17 if direction.length() == 0: return target
-18
-19 # Put the target together
-20 Align.target = explicitTarget
-21 Align.target.orientation = atan2(-direction.x, direction.z)
-22
-23 # 2. Delegate to align
-24 return Align.getSteering()
- * */
