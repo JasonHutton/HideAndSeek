@@ -40,10 +40,22 @@ public class AIInputController : InputControllerI
 
         ((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode = new ShotApproachingDecision(); // Is there a shot approaching the tank? SHOULD we turn it on?
         ((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).trueNode = new ShieldOnAction(); // Turn the shield on
-        ((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).falseNode = new Action(); // Don't turn shield on.
+        ((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).falseNode = new IsGunReadyDecision(); // Don't turn the shield on, but is the gun ready?
+        (((IsGunReadyDecision)((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).falseNode)).trueNode = new FacingEnemyDecision(); // Are we facing the enemy?
+        ((FacingEnemyDecision)(((IsGunReadyDecision)((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).falseNode)).trueNode).trueNode = new ShootGunAction(); // Shoot!
+        ((FacingEnemyDecision)(((IsGunReadyDecision)((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).falseNode)).trueNode).falseNode = new Action(); // Do nothing new
+        (((IsGunReadyDecision)((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).falseNode)).falseNode = new Action(); // Do nothing new
 
-        ((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).falseNode = new Action(); // Can't turn shield on.
-        
+
+        ((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).falseNode = new IsGunReadyDecision(); // Can't turn shield on. But, can we shoot?
+        ((IsGunReadyDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).falseNode)).trueNode = new FacingEnemyDecision(); // Are we facing the enemy?
+        (((FacingEnemyDecision)(((IsGunReadyDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).falseNode)).trueNode))).trueNode = new ShootGunAction(); // Are we facing the enemy?
+        (((FacingEnemyDecision)(((IsGunReadyDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).falseNode)).trueNode))).falseNode = new Action(); // Don't do anything new
+
+        ((IsGunReadyDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).falseNode)).falseNode = new Action(); // Do nothing new.
+
+
+
 
         List<State> states = new List<State>();
         
@@ -120,8 +132,11 @@ public class AIInputController : InputControllerI
 
         ((Decision)(((Decision)dTree).falseNode)).testData = mEffector.ShieldStatus;
         ((ShotApproachingDecision)(((Decision)(((Decision)dTree).falseNode)).trueNode)).testData = CheckForNearestShellDistance();
-        //((CanEnableShieldDecision)(((CheckShieldOnDecision)dTree).trueNode)).testData = mEffector.ShieldStatus;
-        //((Decision)dTree).testData = mEffector.ShieldStatus;
+        ((IsGunReadyDecision)(((Decision)(((Decision)dTree).falseNode)).falseNode)).testData = mEffector.IsGunReady();
+        ((FacingEnemyDecision)((IsGunReadyDecision)(((Decision)(((Decision)dTree).falseNode)).falseNode)).trueNode).testData = AngleToTarget();
+
+        ((IsGunReadyDecision)(((ShotApproachingDecision)(((Decision)(((Decision)dTree).falseNode)).trueNode)).falseNode)).testData = mEffector.IsGunReady();
+        ((FacingEnemyDecision)(((IsGunReadyDecision)(((ShotApproachingDecision)(((Decision)(((Decision)dTree).falseNode)).trueNode)).falseNode)).trueNode)).testData = AngleToTarget();
 
         DecisionTreeNode node = dTree.MakeDecision();
         if (node is ShieldOnAction)
