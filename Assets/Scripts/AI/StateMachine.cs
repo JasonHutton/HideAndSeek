@@ -9,9 +9,9 @@ public class StateMachine
     State initialState;
     State currentState;
 
-    private AIInputController2 script;
+    private AIInputController script;
 
-    public StateMachine(AIInputController2 _script, List<State> _states)
+    public StateMachine(AIInputController _script, List<State> _states)
     {
         // Got a problem here if _states.length == 0...
         states = _states;

@@ -7,7 +7,7 @@ public class FightState : State
     public FightState()
     {
     }
-    public override void GetAction(AIInputController2 script)
+    public override void GetAction(AIInputController script)
     {
         script.steering += Seek.GetSteering(script.target._static.position, script.self._static.position, script.tank.maxSpeed).Weight(1.0f);
     }

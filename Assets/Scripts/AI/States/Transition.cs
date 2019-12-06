@@ -17,7 +17,7 @@ public class Transition
         return targetState;
     }
 
-    public void GetAction(AIInputController2 script)
+    public void GetAction(AIInputController script)
     {
 
     }
