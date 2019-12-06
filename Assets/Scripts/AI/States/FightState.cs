@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class FightState : State
 {
+    public FightState()
+    {
+        Debug.Log("FightConstructor");
+    }
     public void GetAction()
     {
         Debug.Log("FightState");

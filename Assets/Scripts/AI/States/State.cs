@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class State
 {
-    List<Transition> transitions;
+    protected List<Transition> transitions;
 
     public State()
     {

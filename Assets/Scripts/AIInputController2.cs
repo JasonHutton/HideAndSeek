@@ -33,8 +33,19 @@ public class AIInputController2 : InputControllerI
         ((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).falseNode = new Action(); // Don't turn shield on.
 
         List<State> states = new List<State>();
-        states.Add(new FightState());
-        states.Add(new FleeState());
+        
+        State fightState = new FightState();
+        fightState.GetTransitions().Add(new Transition());
+        states.Add(fightState);
+        
+        State fleeState = new FleeState();
+        fleeState.GetTransitions().Add(new Transition());
+        states.Add(fleeState);
+
+        states[0].GetTransitions()[0].targetState = states[1];
+        states[1].GetTransitions()[0].targetState = states[0];
+
+        //states[0].GetTransitions()[0].bTriggered = true;
         sm = new StateMachine(states);
     }
 
