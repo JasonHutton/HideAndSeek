@@ -89,7 +89,7 @@ public class AIInputController : InputControllerI
         return percent < percentDanger;
     }
 
-    public float AngleToTarget()
+    public float AngleToTarget() // This would be way better for gun targeting, if we took into account distance too, not just angle. And target vector. But not touching that for now.
     {
         Rigidbody srb = tank.GetComponentInChildren<Rigidbody>();
         if (srb != null)
