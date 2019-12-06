@@ -10,6 +10,7 @@ public class Shield : MonoBehaviour
     public float shieldCharge;
     public float shieldDepletionPerTick;
     public float shieldRechargePerTick;
+    private Tank tank;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class Shield : MonoBehaviour
     {
         ownerRB = gameObject.transform.parent.GetComponentInChildren<Rigidbody>();
         //gameObject.SetActive(false);
+        tank = gameObject.transform.parent.GetComponent<Tank>();
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class Shield : MonoBehaviour
             if(shieldCharge < shieldDepletionPerTick)
             {
                 SetShieldActive(false);
+                tank.shielded = false;
             }
         }
 

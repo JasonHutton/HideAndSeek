@@ -52,6 +52,7 @@ public class MovementEffector : MonoBehaviour
         if (ShieldScript)
         {
             ShieldScript.SetShieldActive(ShieldStatus);
+            tank.shielded = ShieldScript.GetShieldActive();
         }
         //rb.isKinematic = true;
     }
@@ -128,6 +129,7 @@ public class MovementEffector : MonoBehaviour
             // Shield
             ShieldScript.SetShieldActive(!ShieldScript.GetShieldActive());
             ShieldStatus = ShieldScript.GetShieldActive();
+            tank.shielded = ShieldScript.GetShieldActive();
         }
     }
 

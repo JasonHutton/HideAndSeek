@@ -53,7 +53,7 @@ public class Shell : Poolable
         if(hitObj.CompareTag("Tank"))
         {
             Tank tank = hitObj.GetComponentInParent<Tank>();
-            if (tank != null)
+            if (tank != null && !tank.shielded)
             {
                 tank.InflictDamage(damage);
             }
