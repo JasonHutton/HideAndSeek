@@ -18,7 +18,7 @@ public class MovementEffector : MonoBehaviour
     private Rigidbody rb;
     private Tank tank;
     private Gun GunScript;
-    private Shield ShieldScript;
+    public Shield ShieldScript;
 
     public bool ShieldStatus;
 

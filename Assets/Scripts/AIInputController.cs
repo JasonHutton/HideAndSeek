@@ -84,6 +84,9 @@ public class AIInputController : InputControllerI
 
         foreach (GameObject go in shells)
         {
+            if (go.layer == mEffector.ShieldScript.gameObject.layer)
+                continue; // Don't bother checking our own shots. Yes, this isn't actually checking the direction of teh shot.
+
             Rigidbody goRB = go.GetComponent<Rigidbody>();
             if (goRB != null)
             {
