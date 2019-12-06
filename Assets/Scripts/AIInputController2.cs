@@ -9,8 +9,8 @@ public class AIInputController2 : InputControllerI
     private float Vertical;
 
     public Kinematic target;
-    private Kinematic self;
-    private Tank tank;
+    public Kinematic self;
+    public Tank tank;
     private MovementEffector mEffector;
     private DecisionTreeNode dTree;
 
@@ -80,7 +80,7 @@ public class AIInputController2 : InputControllerI
         bool bWantToFire = false;
         bool bWantToShield = false;
 
-        sm.Update();
+        
 
         ((Decision)dTree).testData = mEffector.ShieldStatus;
         ((Decision)(((Decision)dTree).falseNode)).testData = mEffector.ShieldStatus;
@@ -95,8 +95,10 @@ public class AIInputController2 : InputControllerI
         }
 
         steering = new SteeringOutput();
+
         // Blend Steering
-        steering += Seek.GetSteering(target._static.position, self._static.position, tank.maxSpeed).Weight(1.0f);
+        //steering += Seek.GetSteering(target._static.position, self._static.position, tank.maxSpeed).Weight(1.0f);
+        sm.Update();
         //steering += Flee.GetSteering(target._static.position, self._static.position, tank.maxSpeed).Weight(1.0f);
         //steering += AlignToTarget2.GetSteering(target._static.position, self._static.position, self._static.orientation).Weight(1.0f);
         Rigidbody srb = tank.GetComponentInChildren<Rigidbody>();
