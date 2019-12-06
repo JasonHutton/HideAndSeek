@@ -16,7 +16,7 @@ public class StateMachine
         currentState = initialState = states[0];
     }
 
-    void Update()
+    public void Update()
     {
         Transition triggeredTransition = null;
 

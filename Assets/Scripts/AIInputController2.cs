@@ -32,9 +32,10 @@ public class AIInputController2 : InputControllerI
         ((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).trueNode = new ShieldOnAction(); // Turn the shield on
         ((ShotApproachingDecision)(((CanEnableShieldDecision)((CheckShieldOnDecision)dTree).falseNode).trueNode)).falseNode = new Action(); // Don't turn shield on.
 
-        //List<State> states = new List<State>();
-        //states.Add(new State());
-        //sm = new StateMachine(states);
+        List<State> states = new List<State>();
+        states.Add(new FightState());
+        states.Add(new FleeState());
+        sm = new StateMachine(states);
     }
 
     float CheckForNearestShellDistance()
@@ -66,6 +67,8 @@ public class AIInputController2 : InputControllerI
     {
         bool bWantToFire = false;
         bool bWantToShield = false;
+
+        sm.Update();
 
         ((Decision)dTree).testData = mEffector.ShieldStatus;
         ((Decision)(((Decision)dTree).falseNode)).testData = mEffector.ShieldStatus;
