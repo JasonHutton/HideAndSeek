@@ -89,6 +89,17 @@ public class AIInputController : InputControllerI
         return percent < percentDanger;
     }
 
+    public float AngleToTarget()
+    {
+        Rigidbody srb = tank.GetComponentInChildren<Rigidbody>();
+        if (srb != null)
+        {
+            return Vector3.Angle(srb.transform.forward, target._static.position - self._static.position);
+        }
+
+        return 180f; // We're definitely not facing the target if we can't find it.
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -96,7 +107,7 @@ public class AIInputController : InputControllerI
         bool bWantToShield = false;
 
         
-
+        // This would be better to traverse and set based on what each node is. For now, this is good enough if gross.
         ((Decision)dTree).testData = mEffector.ShieldStatus;
         ((ShotApproachingDecision)(((Decision)dTree).trueNode)).testData = CheckForNearestShellDistance();
 

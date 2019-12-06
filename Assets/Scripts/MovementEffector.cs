@@ -40,6 +40,11 @@ public class MovementEffector : MonoBehaviour
         return ShieldScript.totalShieldCharge;
     }
 
+    public bool IsGunReady()
+    {
+        return GunScript.ReadyToFire();
+    }
+
     void Start()
     {
         ControllerScript = GetComponent<InputControllerI>();

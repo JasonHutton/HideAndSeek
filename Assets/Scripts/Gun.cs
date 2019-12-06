@@ -45,6 +45,14 @@ public class Gun : MonoBehaviour
             shell.Fire(ownerRB.transform.forward, ownerRB.position, ownerRB.rotation);
         }
     }
+
+    public bool ReadyToFire()
+    {
+        if (Time.fixedTime > reloadIntervalTimer)
+            return true;
+
+        return false;
+    }
     /*
 
     public void Fire()
