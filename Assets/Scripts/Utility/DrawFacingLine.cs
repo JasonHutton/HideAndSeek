@@ -6,10 +6,12 @@ public class DrawFacingLine : MonoBehaviour
 {
     Rigidbody rb;
     public float length;
+    LineRenderer line;
 
     // Start is called before the first frame update
     void Start()
     {
+        line = GetComponent<LineRenderer>();
         rb = GetComponent<Rigidbody>();
         if (rb == null)
         {
@@ -21,8 +23,10 @@ public class DrawFacingLine : MonoBehaviour
     void Update()
     {
         if(rb != null)
-        { 
-            Debug.DrawLine(rb.transform.position, rb.transform.position + Vector3.Normalize(rb.transform.forward) * length);
+        {
+            //Debug.DrawLine(rb.transform.position, rb.transform.position + Vector3.Normalize(rb.transform.forward) * length);
+            line.SetPosition(0, rb.transform.position);
+            line.SetPosition(1, rb.transform.position + Vector3.Normalize(rb.transform.forward) * length);
         }
     }
 }
