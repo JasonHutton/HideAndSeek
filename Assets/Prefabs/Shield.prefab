@@ -235,4 +235,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shieldUpSound: {fileID: 2788125964086377491}
   totalShieldCharge: 1000
+  shieldCharge: 0
   shieldDepletionPerTick: 5
+  shieldRechargePerTick: 1

@@ -7,8 +7,9 @@ public class Shield : MonoBehaviour
     private Rigidbody ownerRB;
     public AudioSource shieldUpSound;
     public float totalShieldCharge;
-    private float shieldCharge;
+    public float shieldCharge;
     public float shieldDepletionPerTick;
+    public float shieldRechargePerTick;
 
     private void Awake()
     {
@@ -36,10 +37,17 @@ public class Shield : MonoBehaviour
         if(GetShieldActive())
         {
             shieldCharge -= shieldDepletionPerTick;
+            
             if(shieldCharge < shieldDepletionPerTick)
             {
                 SetShieldActive(false);
             }
+        }
+
+        // This is bugged at the moment due to how shields are disabled resulting in this script not running. Not going to fix for the project.
+        if (shieldCharge < totalShieldCharge - shieldRechargePerTick)
+        {
+            shieldCharge += shieldRechargePerTick;
         }
     }
 

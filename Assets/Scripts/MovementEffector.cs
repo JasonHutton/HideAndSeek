@@ -25,6 +25,21 @@ public class MovementEffector : MonoBehaviour
     private float maxSpeed;
     private float maxRotSpeed;
 
+    public float GetShieldCharge()
+    {
+        return ShieldScript.shieldCharge;
+    }
+
+    public float GetShieldDepletionPerTick()
+    {
+        return ShieldScript.shieldDepletionPerTick;
+    }
+
+    public float GetTotalShieldCharge()
+    {
+        return ShieldScript.totalShieldCharge;
+    }
+
     void Start()
     {
         ControllerScript = GetComponent<InputControllerI>();

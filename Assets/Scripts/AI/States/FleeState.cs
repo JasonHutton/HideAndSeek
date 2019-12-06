@@ -10,5 +10,8 @@ public class FleeState : State
     public override void GetAction(AIInputController script)
     {
         script.steering += Flee.GetSteering(script.target._static.position, script.self._static.position, script.tank.maxSpeed).Weight(1.0f);
+
+        if (!script.CheckShieldDanger())
+            transitions[0].bTriggered = true;
     }
 }

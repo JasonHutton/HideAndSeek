@@ -19,6 +19,6 @@ public class Transition
 
     public void GetAction(AIInputController script)
     {
-
+        bTriggered = false;
     }
 }

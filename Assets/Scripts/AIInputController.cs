@@ -74,6 +74,14 @@ public class AIInputController : InputControllerI
         return shortest;
     }
 
+    public bool CheckShieldDanger()
+    {
+        float percentDanger = 40.0f;
+        float percent = (mEffector.GetShieldCharge() / mEffector.GetTotalShieldCharge()) * 100.0f;
+
+        return percent < percentDanger;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
